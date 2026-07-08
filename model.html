@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<template id="__bundler_thumbnail" data-bg-color="#ffffff">
+  <svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
+    <rect width="1200" height="800" fill="#ffffff"/>
+    <text x="600" y="360" text-anchor="middle" font-family="Manrope,Arial,sans-serif" font-weight="800" font-size="180" fill="#141414">РЕДКО</text>
+    <rect x="500" y="430" width="200" height="8" fill="#EE4A23"/>
+  </svg>
+</template>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box}
+  html,body{margin:0}
+  body{background:#ffffff;color:#141414;font-family:'Manrope','Helvetica Neue',Arial,sans-serif;-webkit-font-smoothing:antialiased}
+  a{color:inherit;text-decoration:none}
+  a:hover{color:var(--accent,#EE4A23)}
+  @media (max-width:900px){
+    .m-header{display:flex !important}
+    .r-hero-side{display:none !important}
+    .r-hero{padding-top:0 !important}
+    .r-hero{grid-template-columns:1fr !important;gap:30px !important;min-height:auto !important;padding:32px 22px 52px !important}
+    .r-pad{padding:76px 22px !important}
+    .r-2col{grid-template-columns:1fr !important;gap:40px !important}
+    .r-gallery{grid-template-columns:repeat(2,1fr) !important;grid-auto-rows:200px !important}
+    .r-cat{grid-template-columns:repeat(2,1fr) !important;gap:28px !important}
+    .r-foot{flex-direction:column !important;gap:32px !important}
+  }
+  @media (max-width:560px){
+    .r-cat,.r-gallery{grid-template-columns:1fr !important}
+    .r-gallery > *{grid-column:auto !important;grid-row:auto !important}
+  }
+</style>
+</helmet>
+<div style="--accent:{{accent}};--note-disp:{{noteDisp}};max-width:1600px;margin:0 auto">
+
+  <!-- ============ МОБИЛЬНЫЙ ХЕДЕР (бургер) ============ -->
+  <header class="m-header" style="display:none;position:sticky;top:0;z-index:30;flex-direction:column;background:rgba(255,255,255,.96);backdrop-filter:blur(8px);border-bottom:1px solid #ededed">
+    <div style="display:flex;align-items:center;justify-content:space-between;padding:14px 22px">
+      <div style="font-weight:800;font-size:24px;letter-spacing:.02em">РЕДКО</div>
+      <button onClick="{{ toggleMenu }}" aria-label="Меню" style="display:flex;flex-direction:column;justify-content:center;gap:5px;width:42px;height:42px;padding:0;border:none;background:transparent;cursor:pointer">
+        <span style="display:block;width:24px;height:2px;background:#141414;margin:0 auto;transition:transform .25s;transform:{{ barTop }}"></span>
+        <span style="display:block;width:24px;height:2px;background:#141414;margin:0 auto;transition:opacity .2s;opacity:{{ barMidOpacity }}"></span>
+        <span style="display:block;width:24px;height:2px;background:#141414;margin:0 auto;transition:transform .25s;transform:{{ barBot }}"></span>
+      </button>
+    </div>
+    <nav style="display:{{ menuDisplay }};flex-direction:column;padding:8px 22px 22px;gap:4px">
+      <a href="#author" onClick="{{ closeMenu }}" style="padding:12px 0;font-size:17px;font-weight:600;border-bottom:1px solid #f0f0f0">Автор</a>
+      <a href="#collections" onClick="{{ closeMenu }}" style="padding:12px 0;font-size:17px;font-weight:600;border-bottom:1px solid #f0f0f0">Коллекции</a>
+      <a href="#footer" onClick="{{ closeMenu }}" style="padding:12px 0;font-size:17px;font-weight:600;border-bottom:1px solid #f0f0f0">Контакты</a>
+      <a href="#footer" onClick="{{ closeMenu }}" style="padding:12px 0;font-size:17px;font-weight:600;border-bottom:1px solid #f0f0f0">Корзина (0)</a>
+      <div style="display:flex;gap:12px;padding-top:16px">
+        <span style="width:42px;height:42px;border-radius:50%;background:#1a1a1a;color:#fff;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:600">IG</span>
+        <span style="width:42px;height:42px;border-radius:50%;background:#1a1a1a;color:#fff;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:600">WA</span>
+        <span style="width:42px;height:42px;border-radius:50%;background:#1a1a1a;color:#fff;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:600">TG</span>
+      </div>
+    </nav>
+  </header>
+
+  <!-- ============ HERO ============ -->
+  <section data-screen-label="Hero" class="r-hero" style="min-height:100vh;display:grid;grid-template-columns:1fr minmax(360px,560px) 1fr;padding:44px 56px 64px;gap:32px">
+    <!-- left: brand + nav -->
+    <div class="r-hero-side" style="display:flex;flex-direction:column;gap:44px">
+      <div style="font-weight:800;font-size:42px;letter-spacing:.02em">РЕДКО</div>
+      <nav style="display:flex;flex-direction:column;gap:10px;font-size:17px;font-weight:500">
+        <a href="#author">Автор</a>
+        <a href="#collections">Коллекции</a>
+        <a href="#footer">Контакты</a>
+      </nav>
+    </div>
+
+    <!-- center: media + tagline -->
+    <div style="display:flex;flex-direction:column;align-items:center;justify-content:flex-start;gap:34px;padding-top:8px">
+      <div style="display:var(--note-disp,flex);text-align:center;max-width:360px;font-family:'IBM Plex Mono',monospace;font-size:12.5px;line-height:1.5;color:#a2a2a2">Крупное видео или 3D-анимация одной из знаковых работ (например: «Купание красного коня»)</div>
+      <div style="width:100%;aspect-ratio:1/1;max-width:420px;border-radius:12px;background:repeating-linear-gradient(45deg,#EE4A23,#EE4A23 12px,#e8492280 12px,#e8492280 24px);display:flex;align-items:center;justify-content:center">
+        <span style="display:var(--note-disp,inline);font-family:'IBM Plex Mono',monospace;font-size:11px;color:#fff;background:rgba(0,0,0,.35);padding:6px 10px;border-radius:20px">видео / 3D</span>
+      </div>
+      <div style="text-align:center;font-size:28px;font-weight:600;line-height:1.25;max-width:280px">Коллекционный фарфор ручной работы</div>
+      <a href="#collections" style="font-size:16px;font-weight:700;letter-spacing:.08em;padding-bottom:6px;border-bottom:2px solid #141414">ОТКРЫТЬ МИР</a>
+    </div>
+
+    <!-- right: cart + socials -->
+    <div class="r-hero-side" style="display:flex;flex-direction:column;align-items:flex-end;gap:40px">
+      <div style="display:flex;align-items:center;gap:12px;font-size:17px;font-weight:500">Корзина
+        <span style="width:34px;height:34px;background:#1a1a1a;color:#fff;border-radius:8px;transform:rotate(45deg);display:flex;align-items:center;justify-content:center">
+          <span style="transform:rotate(-45deg);font-size:13px">0</span>
+        </span>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:14px">
+        <span style="width:46px;height:46px;border-radius:50%;background:#1a1a1a;color:#fff;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:600">IG</span>
+        <span style="width:46px;height:46px;border-radius:50%;background:#1a1a1a;color:#fff;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:600">WA</span>
+        <span style="width:46px;height:46px;border-radius:50%;background:#1a1a1a;color:#fff;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:600">TG</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ МАНИФЕСТ ============ -->
+  <section data-screen-label="Манифест" class="r-pad" style="padding:120px 56px;border-top:1px solid #ededed">
+    <div style="display:var(--note-disp,block);font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.14em;color:#b0b0b0;margin-bottom:48px;text-align:center">// БЛОК 02 — МАНИФЕСТ БРЕНДА</div>
+    <div style="display:flex;flex-direction:column;align-items:center;text-align:center;gap:44px">
+      <div>
+        <div style="font-size:clamp(34px,4vw,56px);font-weight:700;line-height:1.1;letter-spacing:-.01em">Тут создаются мифы,<br>которые только начинают<br>обретать свою историю</div>
+        <div style="display:var(--note-disp,block);font-family:'IBM Plex Mono',monospace;font-size:11px;color:#b0b0b0;margin-top:20px">слоган бренда</div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:10px;font-size:13.5px;line-height:1.45;color:#333;max-width:600px;text-wrap:pretty">
+        <p style="margin:0">«РЕДКО» — авторская арт-студия коллекционного фарфора. Каждая работа — это скульптура-артефакт, собранная в тематические коллекции со своей мифологией и сюжетом.</p>
+        <p style="margin:0">Мы выбираем фарфор как материал памяти: хрупкий и одновременно долговечный, он превращает объект в свидетельство истории, которую хочется хранить.</p>
+        <p style="margin:0">Все изделия создаются вручную и выпускаются лимитированным тиражом. Ручная роспись делает каждый экземпляр единственным в своём роде.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ КОЛЛЕКЦИИ ============ -->
+  <div id="collections" style="display:var(--note-disp,block);font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.14em;color:#b0b0b0;padding:60px 56px 0;border-top:1px solid #ededed">// БЛОК 03 — КОЛЛЕКЦИИ · КАЖДАЯ НА ОТДЕЛЬНЫЙ ЭКРАН, «ЛЕТАЮЩИЙ» ОБЪЕКТ ПО ЦЕНТРУ</div>
+
+  <!-- Коллекция 1 -->
+  <section data-screen-label="Коллекция · Красный конь" style="position:relative;min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:80px 56px 72px;overflow:hidden;background:#141414">
+    <div style="position:relative;z-index:2;text-align:center;display:flex;flex-direction:column;align-items:center;gap:6px">
+      <div style="font-size:clamp(30px,3.4vw,44px);font-weight:700;letter-spacing:-.01em;color:#fff">Красный конь</div>
+      <div style="font-size:14px;color:#b8b8b8">3 объекта</div>
+      <div style="font-size:14px;color:#b8b8b8">год создания: 2025</div>
+    </div>
+    <div style="position:relative;z-index:2;margin-top:34px;width:min(340px,42vw);aspect-ratio:3/4">
+      <div style="width:56%;height:100%;margin:0 auto;background:var(--accent,#EE4A23);display:flex;align-items:center;justify-content:center">
+        <span style="display:var(--note-disp,flex);font-family:'IBM Plex Mono',monospace;font-size:11px;color:#ffffff;text-align:center;line-height:1.5;padding:0 18px">PNG · «летающая»<br>скульптура —<br>представитель<br>коллекции</span>
+      </div>
+      <a href="collection.html?c=horse" style="position:absolute;left:50%;bottom:40px;transform:translateX(-50%);white-space:nowrap;font-size:17px;font-weight:700;letter-spacing:.04em;color:#fff;padding-bottom:8px;border-bottom:3px solid #fff">ВОЙТИ В КОЛЛЕКЦИЮ</a>
+    </div>
+  </section>
+
+  <!-- Коллекция 2 -->
+  <section data-screen-label="Коллекция · Многодетная мать" style="position:relative;min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:80px 56px 72px;overflow:hidden;background:var(--accent,#EE4A23)">
+    <div style="position:relative;z-index:2;text-align:center;display:flex;flex-direction:column;align-items:center;gap:6px">
+      <div style="font-size:clamp(30px,3.4vw,44px);font-weight:700;letter-spacing:-.01em;color:#fff">Многодетная мать</div>
+      <div style="font-size:14px;color:#ffd9cf">5 объектов</div>
+      <div style="font-size:14px;color:#ffd9cf">год создания: 2026</div>
+    </div>
+    <div style="position:relative;z-index:2;margin-top:34px;width:min(340px,42vw);aspect-ratio:3/4;display:flex;align-items:center;justify-content:center">
+      <svg viewBox="0 0 380 470" style="width:82%;height:auto;display:block" xmlns="http://www.w3.org/2000/svg">
+        <ellipse cx="190" cy="278" rx="172" ry="192" fill="#1c1c1c"/>
+        <ellipse cx="190" cy="74" rx="84" ry="30" fill="#1c1c1c"/>
+        <rect x="106" y="74" width="168" height="40" fill="#1c1c1c"/>
+      </svg>
+      <a href="collection.html?c=mother" style="position:absolute;left:50%;bottom:40px;transform:translateX(-50%);white-space:nowrap;font-size:17px;font-weight:700;letter-spacing:.04em;color:#fff;padding-bottom:8px;border-bottom:3px solid #fff">ВОЙТИ В КОЛЛЕКЦИЮ</a>
+    </div>
+  </section>
+
+  <!-- Коллекция 3 -->
+  <section data-screen-label="Коллекция · Легенды Новой Москвы" style="position:relative;min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:80px 56px 72px;overflow:hidden;border-top:1px solid #ededed;background:#f4f3f1">
+    <div style="position:relative;z-index:2;text-align:center;display:flex;flex-direction:column;align-items:center;gap:6px">
+      <div style="font-size:clamp(30px,3.4vw,44px);font-weight:700;letter-spacing:-.01em;line-height:1.1">Легенды и мифы<br>Новой Москвы</div>
+      <div style="font-size:14px;color:#555">5 сюжетов</div>
+      <div style="font-size:14px;color:#555">серия ваз · 2026</div>
+    </div>
+    <div style="position:relative;z-index:2;margin-top:34px;width:min(340px,42vw);aspect-ratio:3/4;display:flex;align-items:center;justify-content:center">
+      <svg viewBox="0 0 220 340" style="width:60%;height:auto;display:block" xmlns="http://www.w3.org/2000/svg">
+        <path d="M78 20 h64 v20 l-14 24 c34 18 54 52 54 96 0 76 -34 156 -72 156 s-72 -80 -72 -156 c0 -44 20 -78 54 -96 l-14 -24 z" fill="var(--accent,#EE4A23)"/>
+        <rect x="70" y="18" width="80" height="10" rx="5" fill="var(--accent,#EE4A23)"/>
+      </svg>
+      <a href="collection.html?c=moscow" style="position:absolute;left:50%;bottom:40px;transform:translateX(-50%);white-space:nowrap;font-size:17px;font-weight:700;letter-spacing:.04em;color:#141414;padding-bottom:8px;border-bottom:3px solid #141414">ВОЙТИ В КОЛЛЕКЦИЮ</a>
+    </div>
+  </section>
+
+  <!-- Коллекция 4 -->
+  <section data-screen-label="Коллекция · Красная женщина и синий конь" style="position:relative;min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:80px 56px 72px;overflow:hidden;border-top:1px solid #ededed;background:#eef0f5">
+    <div style="position:relative;z-index:2;text-align:center;display:flex;flex-direction:column;align-items:center;gap:6px">
+      <div style="font-size:clamp(30px,3.4vw,44px);font-weight:700;letter-spacing:-.01em;line-height:1.1;color:#2A4FB0">Красная женщина<br>и синий конь</div>
+      <div style="font-size:14px;color:#555">серия в разработке</div>
+      <div style="font-size:14px;color:#555">фарфор · 2026</div>
+    </div>
+    <div style="position:relative;z-index:2;margin-top:34px;width:min(340px,42vw);aspect-ratio:3/4">
+      <div style="position:relative;width:100%;height:76%">
+        <div style="position:absolute;left:8%;bottom:16%;width:84%;height:24%;background:#2A4FB0"></div>
+        <div style="position:absolute;left:41%;bottom:16%;width:20%;height:74%;background:var(--accent,#EE4A23)"></div>
+      </div>
+      <a href="collection.html?c=redblue" style="position:absolute;left:50%;bottom:40px;transform:translateX(-50%);white-space:nowrap;font-size:17px;font-weight:700;letter-spacing:.04em;color:#141414;padding-bottom:8px;border-bottom:3px solid #141414">ВОЙТИ В КОЛЛЕКЦИЮ</a>
+    </div>
+  </section>
+
+  <!-- ============ ОБ АВТОРЕ ============ -->
+  <section data-screen-label="Автор" id="author" class="r-pad" style="padding:120px 56px;border-top:1px solid #ededed">
+    <div style="display:var(--note-disp,block);font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.14em;color:#b0b0b0;margin-bottom:48px;text-align:center">// БЛОК 04 — СВОДКА ОБ АВТОРЕ</div>
+    <div style="display:flex;flex-direction:column;align-items:center;text-align:center;gap:28px">
+      <div style="width:min(300px,60vw);aspect-ratio:4/5;border-radius:14px;background:#f3f2f0;border:1px dashed #d8d7d3;display:flex;align-items:center;justify-content:center">
+        <span style="display:var(--note-disp,flex);font-family:'IBM Plex Mono',monospace;font-size:12px;color:#a2a2a2">фото автора</span>
+      </div>
+      <div style="display:flex;flex-direction:column;align-items:center;gap:14px;max-width:640px">
+        <div style="font-size:clamp(28px,3vw,42px);font-weight:700;letter-spacing:-.01em">Елена Илларионова</div>
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:#8f8f8f">AI-художник · фотограф · керамист · создатель и креативный директор арт-студии «РЕДКО»</div>
+        <div style="display:flex;flex-direction:column;gap:8px;font-size:13.5px;line-height:1.45;color:#333;text-wrap:pretty">
+          <p style="margin:0">Российская художница, работающая с керамикой, фарфором и скульптурой. Родилась в Рязани в 1980 году, с 2002 года живёт и работает в Москве.</p>
+          <p style="margin:0">Более пятнадцати лет работала в индустрии моды, затем обратилась к художественной фотографии. Сегодня основным медиумом художницы стали керамика и фарфор, в которых она создаёт современную мифологию.</p>
+        </div>
+        <a href="about.html" style="margin-top:12px;font-size:17px;font-weight:700;letter-spacing:.04em;color:#141414;padding-bottom:8px;border-bottom:3px solid #141414">ПОДРОБНЕЕ О РЕДКО →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ ФУТЕР ============ -->
+  <footer data-screen-label="Футер" id="footer" class="r-pad" style="background:#141414;color:#fff;padding:80px 56px 56px;border-radius:20px 20px 0 0">
+    <div class="r-foot" style="display:flex;flex-wrap:wrap;justify-content:space-between;gap:48px">
+      <div style="display:flex;flex-direction:column;gap:24px">
+        <div style="font-size:38px;font-weight:800;letter-spacing:.02em">РЕДКО</div>
+        <div style="font-size:15px;line-height:1.5;color:#cfcfcf;max-width:280px">Буду рада лично обсудить вопросы сотрудничества и приобретения.</div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:12px;font-size:16px">
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.14em;color:#7d7d7d;margin-bottom:6px">КОНТАКТЫ</div>
+        <div>Москва, Россия</div>
+        <a href="tel:+79255435971">+7 925 543 59 71</a>
+        <a href="mailto:illarionova@mail.ru">illarionova@mail.ru</a>
+        <a href="#">@helen_marllen</a>
+        <a href="#">helenmarllen.tilda.ws</a>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:14px">
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.14em;color:#7d7d7d;margin-bottom:6px">СОЦСЕТИ</div>
+        <div style="display:flex;gap:12px">
+          <span style="width:46px;height:46px;border-radius:50%;border:1px solid #3a3a3a;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:600">IG</span>
+          <span style="width:46px;height:46px;border-radius:50%;border:1px solid #3a3a3a;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:600">WA</span>
+          <span style="width:46px;height:46px;border-radius:50%;border:1px solid #3a3a3a;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:600">TG</span>
+        </div>
+      </div>
+    </div>
+    <div style="margin-top:64px;padding-top:24px;border-top:1px solid #2a2a2a;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;font-size:13px;color:#7d7d7d">
+      <span>© 2026 Арт-студия «РЕДКО»</span>
+      <span style="display:var(--note-disp,inline);font-family:'IBM Plex Mono',monospace">// прототип главной страницы</span>
+    </div>
+  </footer>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{
+  &quot;accentColor&quot;: {&quot;editor&quot;:&quot;color&quot;,&quot;default&quot;:&quot;#EE4A23&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;options&quot;:[&quot;#EE4A23&quot;,&quot;#1A1A1A&quot;,&quot;#2A6FDB&quot;,&quot;#3B7A57&quot;]},
+  &quot;showAnnotations&quot;: {&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;}
+}">
+class Component extends DCLogic {
+  state = { menuOpen: false };
+  renderVals() {
+    const open = this.state.menuOpen;
+    return {
+      accent: this.props.accentColor ?? '#EE4A23',
+      noteDisp: (this.props.showAnnotations ?? true) ? 'flex' : 'none',
+      menuDisplay: open ? 'flex' : 'none',
+      barTop: open ? 'translateY(7px) rotate(45deg)' : 'none',
+      barBot: open ? 'translateY(-7px) rotate(-45deg)' : 'none',
+      barMidOpacity: open ? 0 : 1,
+      toggleMenu: () => this.setState(s => ({ menuOpen: !s.menuOpen })),
+      closeMenu: () => this.setState({ menuOpen: false }),
+    };
+  }
+}
+</script>
+</body>
+</html>

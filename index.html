@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&amp;family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box}
+  html,body{margin:0}
+  body{background:#ffffff;color:#141414;font-family:'Manrope','Helvetica Neue',Arial,sans-serif;-webkit-font-smoothing:antialiased}
+  a{color:inherit;text-decoration:none}
+  a:hover{color:var(--accent,#EE4A23)}
+  @media (max-width:900px){
+    .r-pad{padding:76px 22px !important}
+    .r-2col{grid-template-columns:1fr !important;gap:40px !important}
+    .r-gallery{grid-template-columns:repeat(2,1fr) !important;grid-auto-rows:200px !important}
+    .r-cat{grid-template-columns:repeat(2,1fr) !important;gap:28px !important}
+    .r-foot{flex-direction:column !important;align-items:flex-start !important;gap:28px !important;text-align:left !important}
+    .r-foot > *{text-align:left !important}
+  }
+  @media (max-width:560px){
+    .r-cat,.r-gallery{grid-template-columns:1fr !important}
+    .r-gallery > *{grid-column:auto !important;grid-row:auto !important}
+  }
+</style>
+</helmet>
+<div style="--accent:{{accent}};--note-disp:{{noteDisp}};max-width:1600px;margin:0 auto">
+
+  <!-- ===== ШАПКА ===== -->
+  <header style="position:relative;z-index:20;display:flex;align-items:center;justify-content:space-between;padding:24px 56px">
+    <div onMouseEnter="{{ openNav }}" onMouseLeave="{{ closeNav }}" style="position:relative">
+      <a href="index.html" style="font-weight:800;font-size:26px;letter-spacing:.02em">РЕДКО</a>
+      <div style="position:absolute;top:100%;left:0;margin-top:14px;display:{{ navDisplay }};flex-direction:column;min-width:240px;padding:14px 18px 18px;background:#fff;border:1px solid #ededed;border-radius:12px;box-shadow:0 18px 46px rgba(0,0,0,.12);z-index:40">
+        <a href="index.html#author" style="padding:11px 0;font-size:15px;font-weight:600;border-bottom:1px solid #f2f2f2">Автор</a>
+        <a href="index.html#collections" style="padding:11px 0;font-size:15px;font-weight:600;border-bottom:1px solid #f2f2f2">Коллекции</a>
+        <a href="index.html#footer" style="padding:11px 0;font-size:15px;font-weight:600;border-bottom:1px solid #f2f2f2">Контакты</a>
+        <div style="display:flex;gap:10px;padding-top:16px">
+          <span style="width:40px;height:40px;border-radius:50%;background:#1a1a1a;color:#fff;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:600">IG</span>
+          <span style="width:40px;height:40px;border-radius:50%;background:#1a1a1a;color:#fff;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:600">WA</span>
+          <span style="width:40px;height:40px;border-radius:50%;background:#1a1a1a;color:#fff;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:600">TG</span>
+        </div>
+      </div>
+    </div>
+    <div style="display:flex;align-items:center;gap:12px;font-size:15px;font-weight:500">Корзина
+      <span style="width:30px;height:30px;background:#1a1a1a;color:#fff;border-radius:7px;transform:rotate(45deg);display:flex;align-items:center;justify-content:center">
+        <span style="transform:rotate(-45deg);font-size:12px">0</span>
+      </span>
+    </div>
+  </header>
+
+  <!-- ===== ЭКРАН 1 · ХИРО (объект в кадре фонового изображения) ===== -->
+  <section data-screen-label="Хиро коллекции" style="position:relative;min-height:100vh;overflow:hidden;background:{{heroBg}}">
+    <span style="display:var(--note-disp,flex);position:absolute;top:88px;left:50%;transform:translateX(-50%);font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.14em;color:{{heroMeta}};text-align:center;z-index:3">// ЗАПОЛНЯЮЩЕЕ ФОНОВОЕ ИЗОБРАЖЕНИЕ СЦЕНЫ — МОДЕЛЬ СТОИТ В КАДРЕ</span>
+
+    <!-- объект, стоящий в кадре -->
+    <sc-if value="{{ isHorse }}" hint-placeholder-val="{{ true }}">
+      <div style="position:absolute;left:50%;bottom:0;transform:translateX(-50%);width:min(240px,26vw);height:66vh;background:var(--accent,#EE4A23);z-index:2;display:flex;align-items:center;justify-content:center">
+        <span style="display:var(--note-disp,flex);font-family:'IBM Plex Mono',monospace;font-size:11px;color:#fff;text-align:center;line-height:1.5;padding:0 18px">модель<br>в кадре</span>
+      </div>
+    </sc-if>
+    <sc-if value="{{ isMother }}" hint-placeholder-val="{{ true }}">
+      <div style="position:absolute;left:50%;bottom:-3%;transform:translateX(-50%);width:min(340px,40vw);z-index:2">
+        <svg viewBox="0 0 380 470" style="width:100%;height:auto;display:block" xmlns="http://www.w3.org/2000/svg">
+          <ellipse cx="190" cy="278" rx="172" ry="192" fill="#1c1c1c"></ellipse>
+          <ellipse cx="190" cy="74" rx="84" ry="30" fill="#1c1c1c"></ellipse>
+          <rect x="106" y="74" width="168" height="40" fill="#1c1c1c"></rect>
+        </svg>
+      </div>
+    </sc-if>
+    <sc-if value="{{ isMoscow }}" hint-placeholder-val="{{ true }}">
+      <div style="position:absolute;left:50%;bottom:-2%;transform:translateX(-50%);width:min(300px,34vw);z-index:2">
+        <svg viewBox="0 0 220 340" style="width:100%;height:auto;display:block" xmlns="http://www.w3.org/2000/svg">
+          <path d="M78 20 h64 v20 l-14 24 c34 18 54 52 54 96 0 76 -34 156 -72 156 s-72 -80 -72 -156 c0 -44 20 -78 54 -96 l-14 -24 z" fill="var(--accent,#EE4A23)"></path>
+          <rect x="70" y="18" width="80" height="10" rx="5" fill="var(--accent,#EE4A23)"></rect>
+        </svg>
+      </div>
+    </sc-if>
+    <sc-if value="{{ isRedBlue }}" hint-placeholder-val="{{ true }}">
+      <div style="position:absolute;left:50%;bottom:6%;transform:translateX(-50%);width:min(360px,42vw);height:52vh;z-index:2">
+        <div style="position:absolute;left:0;bottom:14%;width:100%;height:26%;background:#2A4FB0"></div>
+        <div style="position:absolute;left:39%;bottom:14%;width:22%;height:78%;background:var(--accent,#EE4A23)"></div>
+      </div>
+    </sc-if>
+    <!-- притенение у основания (грунт) -->
+    <div style="position:absolute;left:0;right:0;bottom:0;height:24%;background:linear-gradient(to top,rgba(0,0,0,.28),transparent);z-index:2;pointer-events:none"></div>
+
+    <!-- заголовок поверх сцены -->
+    <div style="position:absolute;inset:0;z-index:3;text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;padding:56px;pointer-events:none">
+      
+      
+    <h1 style="margin:0;font-size:clamp(46px,6.4vw,96px);font-weight:800;letter-spacing:-.02em;line-height:.98;color:{{heroTitle}}">{{ name }}</h1></div>
+    <a href="#story" style="position:absolute;left:50%;bottom:40px;transform:translateX(-50%);z-index:4;font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.1em;color:#fff">↓ ИСТОРИЯ КОЛЛЕКЦИИ</a>
+  </section>
+
+  <!-- ===== ЭКРАН 2 · ИСТОРИЯ ===== -->
+  <section data-screen-label="История" id="story" class="r-pad" style="padding:120px 56px;border-top:1px solid #ededed">
+    <div style="display:var(--note-disp,block);font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.14em;color:#b0b0b0;margin-bottom:16px">// ЭКРАН 02 — ИСТОРИЯ КОЛЛЕКЦИИ</div>
+    <div style="display:flex;flex-direction:column;align-items:center;text-align:center;gap:48px">
+      <div style="max-width:720px">
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.14em;color:var(--accent,#EE4A23);margin-bottom:20px">ИСТОРИЯ</div>
+        <h2 style="margin:0 0 28px;font-size:clamp(30px,3.6vw,50px);font-weight:700;letter-spacing:-.01em;line-height:1.08">{{ histHead }}</h2>
+        <div style="display:flex;flex-direction:column;gap:10px;font-size:14px;line-height:1.5;color:#333;text-wrap:pretty">
+          <sc-for list="{{ histParas }}" as="p" hint-placeholder-count="3">
+            <p style="margin:0">{{ p }}</p>
+          </sc-for>
+        </div>
+      </div>
+      <div style="width:min(460px,100%);aspect-ratio:4/5;background:#f3f2f0;border:1px dashed #d8d7d3;display:flex;align-items:center;justify-content:center">
+        <span style="display:var(--note-disp,flex);font-family:'IBM Plex Mono',monospace;font-size:12px;color:#a2a2a2;text-align:center;line-height:1.6;padding:0 24px">{{ histImgNote }}</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== ЭКРАН 3 · СИМВОЛИКА ===== -->
+  <section data-screen-label="Символика" class="r-pad" style="padding:120px 56px;border-top:1px solid #ededed;background:#faf9f7">
+    <div style="display:var(--note-disp,block);font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.14em;color:#b0b0b0;margin-bottom:16px">// ЭКРАН 03 — СИМВОЛИКА</div>
+    <div class="r-2col" style="display:grid;grid-template-columns:.95fr 1.05fr;gap:72px;align-items:center">
+      <div style="aspect-ratio:4/5;background:#eeece8;border:1px dashed #d3d2ce;display:flex;align-items:center;justify-content:center">
+        <span style="display:var(--note-disp,flex);font-family:'IBM Plex Mono',monospace;font-size:12px;color:#a2a2a2;text-align:center;line-height:1.6;padding:0 24px">{{ symImgNote }}</span>
+      </div>
+      <div>
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.14em;color:var(--accent,#EE4A23);margin-bottom:20px">СИМВОЛИКА</div>
+        <blockquote style="margin:0 0 32px;font-size:clamp(24px,2.6vw,36px);font-weight:600;line-height:1.25;letter-spacing:-.01em;text-wrap:pretty">{{ symPull }}</blockquote>
+        <div style="display:flex;flex-direction:column;gap:10px;font-size:14px;line-height:1.5;color:#333;max-width:520px;text-wrap:pretty">
+          <sc-for list="{{ symParas }}" as="p" hint-placeholder-count="3">
+            <p style="margin:0">{{ p }}</p>
+          </sc-for>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== ЭКРАН 4 · ГАЛЕРЕЯ ===== -->
+  <section data-screen-label="Галерея" class="r-pad" style="padding:120px 56px;border-top:1px solid #ededed">
+    <div style="display:flex;align-items:baseline;justify-content:space-between;flex-wrap:wrap;gap:16px;margin-bottom:44px">
+      <h2 style="margin:0;font-size:clamp(28px,3vw,42px);font-weight:700;letter-spacing:-.01em">Галерея</h2>
+      <div style="display:var(--note-disp,block);font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.14em;color:#b0b0b0">// НЕОДНОРОДНАЯ СЕТКА ИЗОБРАЖЕНИЙ</div>
+    </div>
+    <div class="r-gallery" style="display:grid;grid-template-columns:repeat(6,1fr);grid-auto-rows:230px;gap:22px">
+      <div style="grid-column:span 2;grid-row:span 2;background:#1e1e1e;border-radius:4px;display:flex;align-items:center;justify-content:center"><span style="display:var(--note-disp,flex);font-family:'IBM Plex Mono',monospace;font-size:11px;color:#8a8a8a">фото</span></div>
+      <div style="grid-column:span 4;grid-row:span 1;background:#1e1e1e;border-radius:4px;display:flex;align-items:center;justify-content:center"><span style="display:var(--note-disp,flex);font-family:'IBM Plex Mono',monospace;font-size:11px;color:#8a8a8a">фото</span></div>
+      <div style="grid-column:span 2;grid-row:span 1;background:#1e1e1e;border-radius:4px;display:flex;align-items:center;justify-content:center"><span style="display:var(--note-disp,flex);font-family:'IBM Plex Mono',monospace;font-size:11px;color:#8a8a8a">фото</span></div>
+      <div style="grid-column:span 2;grid-row:span 1;background:#1e1e1e;border-radius:4px;display:flex;align-items:center;justify-content:center"><span style="display:var(--note-disp,flex);font-family:'IBM Plex Mono',monospace;font-size:11px;color:#8a8a8a">фото</span></div>
+    </div>
+  </section>
+
+  <!-- ===== ЭКРАН 5 · ОБЪЕКТЫ КОЛЛЕКЦИИ ===== -->
+  <section data-screen-label="Объекты коллекции" class="r-pad" style="padding:120px 56px 140px;border-top:1px solid #ededed;background:#faf9f7">
+    <h2 style="margin:0 0 12px;text-align:center;font-size:clamp(30px,3.4vw,48px);font-weight:700;letter-spacing:-.01em">Объекты коллекции</h2>
+    <div style="display:var(--note-disp,block);text-align:center;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.14em;color:#b0b0b0;margin-bottom:56px">// КАТАЛОГ · 3 В РЯД</div>
+    <div class="r-cat" style="display:grid;grid-template-columns:repeat(3,1fr);gap:40px;max-width:1200px;margin:0 auto">
+      <sc-for list="{{ objects }}" as="obj" hint-placeholder-count="3">
+        <article style="display:flex;flex-direction:column;gap:20px">
+          <a href="model.html?o={{ obj.key }}" style="width:100%;aspect-ratio:4/5;border-radius:4px;background:{{ obj.color }};display:flex;align-items:center;justify-content:center">
+            <span style="display:var(--note-disp,flex);font-family:'IBM Plex Mono',monospace;font-size:11px;color:rgba(255,255,255,.85);text-align:center;line-height:1.5;padding:0 18px">заглушка<br>объекта</span>
+          </a>
+          <div style="display:flex;flex-direction:column;gap:4px">
+            <div style="font-size:19px;font-weight:700">{{ obj.title }}</div>
+            <div style="font-size:13px;color:#777">{{ obj.subtitle }}</div>
+          </div>
+          <a href="model.html?o={{ obj.key }}" style="align-self:flex-start;font-size:14px;font-weight:700;letter-spacing:.06em;color:#141414;padding-bottom:6px;border-bottom:2px solid #141414">ОТКРЫТЬ →</a>
+        </article>
+      </sc-for>
+    </div>
+  </section>
+
+  <!-- ===== ФУТЕР ===== -->
+  <footer data-screen-label="Футер" style="background:#141414;color:#fff;padding:64px 56px 48px;border-radius:20px 20px 0 0">
+    <div style="display:flex;flex-wrap:wrap;justify-content:space-between;gap:40px;align-items:flex-end">
+      <a href="index.html" style="font-size:15px;font-weight:700;letter-spacing:.06em;color:#fff;padding-bottom:6px;border-bottom:2px solid #fff">← ВСЕ КОЛЛЕКЦИИ</a>
+      <div style="display:flex;flex-direction:column;gap:8px;font-size:15px;text-align:right">
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.14em;color:#7d7d7d">КОНТАКТЫ</div>
+        <a href="tel:+79255435971">+7 925 543 59 71</a>
+        <a href="mailto:illarionova@mail.ru">illarionova@mail.ru</a>
+      </div>
+    </div>
+  </footer>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{
+  &quot;$preview&quot;: {&quot;width&quot;: 1440, &quot;height&quot;: 1024},
+  &quot;accentColor&quot;: {&quot;editor&quot;:&quot;color&quot;,&quot;default&quot;:&quot;#EE4A23&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;options&quot;:[&quot;#EE4A23&quot;,&quot;#1A1A1A&quot;,&quot;#2A6FDB&quot;,&quot;#3B7A57&quot;]},
+  &quot;showAnnotations&quot;: {&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;}
+}">
+const DATA = {
+  horse: {
+    name: 'Красный конь',
+    year: '2025',
+    count: '3 объекта',
+    heroBg: '#f6efe9',
+    heroTitle: '#141414', heroMeta: '#8a8378',
+    histHead: 'С него началась арт-студия «РЕДКО»',
+    histParas: [
+      '2025 год — создание арт-студии фарфора «РЕДКО». Она родилась из поиска, и этот поиск привёл к первому произведению искусства — «Купание красного коня».',
+      'Это первый проект «РЕДКО», который сразу попал на выставку «Трын*Трава. Современный русский стиль» в октябре 2025 года в Москве.',
+      '«Купание красного коня» — фарфор, надглазурная роспись, золото. Каждый экземпляр создаётся вручную и существует в лимитированном тираже.',
+    ],
+    histImgNote: 'фото с выставки\n«Трын*Трава», 2025',
+    symPull: 'Образ, который кажется одновременно новым и давно знакомым.',
+    symParas: [
+      'Красный конь — архетип, живущий между сном и коллективной памятью. Зритель перестаёт видеть в нём художественный объект и начинает чувствовать, что встречал этот образ раньше.',
+      '«Конь в пальто» — первый арт-объект коллекции «12 фарфоровых», переосмысляющей культурные коды России через призму восточного гороскопа. Ироничный образ на стыке эпох, ставший изящной скульптурой из белого фарфора.',
+      'Следующий шаг — «Купание красного коня» в стеклопластике, 2 × 3,2 метра: масштаб городского объекта, сохраняющий цвета и пропорции фарфорового оригинала.',
+    ],
+    symImgNote: 'деталь росписи /\nэскиз объекта',
+    objects: [
+      { key: 'horse-bathing', title: 'Купание красного коня', subtitle: 'фарфор, надглазурная роспись, золото · 2025', color: '#EE4A23' },
+      { key: 'horse-coat', title: 'Конь в пальто', subtitle: 'белый фарфор, 3 варианта росписи · 2025', color: '#D8381A' },
+      { key: 'horse-fiberglass', title: 'Купание красного коня · городской объект', subtitle: 'стеклопластик, 2 × 3,2 м', color: '#F2643E' },
+    ],
+  },
+  mother: {
+    name: 'Многодетная мать',
+    year: '2026',
+    count: '5 объектов',
+    heroBg: '#f2f1ef',
+    heroTitle: '#EE4A23', heroMeta: '#EE4A23',
+    histHead: 'Серия ваз, рождённая из личного опыта',
+    histParas: [
+      'В основе серии — личный опыт и социальная рефлексия. Будучи многодетной матерью, художница сталкивалась с моментами неловкости и общественного порицания во время кормления грудью в публичных пространствах.',
+      'Этот тонкий и до сих пор табуированный в нашем обществе процесс стал отправной точкой для художественного высказывания.',
+      'Проект находится в стадии разработки: на изображениях — концептуальные эскизы (с использованием ИИ), на основе которых создаются фарфоровые объекты.',
+    ],
+    histImgNote: 'концептуальный\nИИ-эскиз серии',
+    symPull: 'Ваза становится медиатором разговора о материнстве и телесности.',
+    symParas: [
+      'Серия ваз с женской грудью — попытка перевести телесный, интимный опыт в плоскость декоративно-прикладного искусства.',
+      'Утилитарный предмет парадоксальным образом становится посредником в разговоре о материнстве, телесности, границах приватного и публичного.',
+      'Через форму и функцию предмета художница исследует, как общество принимает или отвергает естественные проявления женского тела.',
+    ],
+    symImgNote: 'форма вазы /\nдеталь силуэта',
+    objects: [
+      { key: 'mother-1-white', title: 'Многодетная мать № 1', subtitle: 'вариант: белый · фарфор, 47 см', color: '#d4d2ce' },
+      { key: 'mother-1-black', title: 'Многодетная мать № 1', subtitle: 'вариант: чёрный · фарфор, 47 см', color: '#1a1a1a' },
+      { key: 'mother-1-red', title: 'Многодетная мать № 1', subtitle: 'вариант: красный · фарфор, 47 см', color: '#EE4A23' },
+      { key: 'mother-1-minium', title: 'Многодетная мать № 1', subtitle: 'вариант: миний · фарфор, 47 см', color: '#C1440E' },
+      { key: 'mother-1-graphite', title: 'Многодетная мать № 1', subtitle: 'вариант: графит · фарфор, 47 см', color: '#3a3a3a' },
+      { key: 'mother-2-white', title: 'Многодетная мать № 2', subtitle: 'белый · фарфор, 25 см', color: '#c9c7c3' },
+    ],
+  },
+  moscow: {
+    name: 'Легенды и мифы Новой Москвы',
+    year: '2026',
+    count: '5 сюжетов',
+    heroBg: '#efeee8',
+    heroTitle: '#141414', heroMeta: '#8a8378',
+    histHead: 'Античная форма как язык о настоящем',
+    histParas: [
+      'Историко-фантастическая серия керамических ваз, вдохновлённая древнегреческой чернофигурной вазописью. Вместо героев Эллады на сосудах появляются новые персонажи и ритуалы современного мегаполиса.',
+      'Шопоголики и трудоголики, блогеры и криптоинвесторы, зум-совещания и маркетплейсы, фитнес-марафоны и пробки — явления, которые кажутся привычными сегодня, но завтра могут стать такими же загадочными свидетельствами эпохи, как античные мифы.',
+      'Используя язык античного искусства, я создаю новую мифологию. Проект исследует, как повседневность становится историей, а история — мифом.',
+    ],
+    histImgNote: 'ИИ-эскиз серии /\n«Совещание на Олимпе»',
+    symPull: 'Повседневность становится историей, а история — мифом.',
+    symParas: [
+      'Первая работа серии — «Совещание на Олимпе». Роспись покрывает обе стороны сосуда, превращая вазу в хронику современной жизни.',
+      'Каждый сосуд повторяет форму античного прототипа — амфора, килик, канфар, гидрия, кратер, — но его роспись рассказывает о реалиях нашего времени.',
+      'Серия открыта для новых сюжетов и продолжает расширяться.',
+    ],
+    symImgNote: 'деталь росписи /\nвторая сторона вазы',
+    objects: [
+      { key: 'moscow-olymp', title: 'Совещание на Олимпе', subtitle: 'керамика, надглазурная роспись · 35 см · 2026', color: '#2c2c2c' },
+      { key: 'moscow-bacchanalia', title: 'Вакханалия в зуме', subtitle: 'дионисийские пляски в онлайн-формате', color: '#5a3a86' },
+      { key: 'moscow-shopping', title: 'Богиня шопинга', subtitle: 'современная афродита торговых центров', color: '#b0784a' },
+      { key: 'moscow-sport', title: 'Быстрее, выше, сильнее', subtitle: 'ода спорту, марафонам и культу тела', color: '#2f6d4f' },
+      { key: 'moscow-metro', title: 'Метро', subtitle: 'четверть нашей жизни', color: '#33475f' },
+    ],
+  },
+  redblue: {
+    name: 'Красная женщина и синий конь',
+    year: '2026',
+    count: 'серия в разработке',
+    heroBg: '#f0eff2',
+    heroTitle: '#2A4FB0', heroMeta: '#8a8aa0',
+    histHead: 'Странствие через один и тот же сон',
+    histParas: [
+      'Серия фарфоровых скульптур, исследующая пространство между личной мифологией и коллективной памятью.',
+      'Красная женщина и Синий конь появляются в разных ситуациях и пространствах, словно странствуют через один и тот же сон. Они не принадлежат определённому времени или месту, оставаясь постоянными спутниками друг друга, но никогда не объясняя своего присутствия.',
+      'Работая с фарфором, я создаю объекты, напоминающие фрагменты неизвестной мифологии или археологические находки из мира, которого никогда не было.',
+    ],
+    histImgNote: 'серия существует пока\nв ИИ-генерациях',
+    symPull: 'Образ кажется одновременно новым и давно существующим.',
+    symParas: [
+      'Меня интересует не сюжет, а ощущение узнавания — когда образ кажется одновременно новым и давно знакомым.',
+      'Каждая скульптура становится самостоятельной главой этой истории, сохраняя пространство для интерпретации зрителя.',
+    ],
+    symImgNote: 'ИИ-генерация серии',
+    objects: [
+      { key: 'redblue-1', title: 'Красная женщина и Синий конь', subtitle: 'фарфор · серия в разработке', color: '#2A4FB0' },
+    ],
+  },
+};
+
+class Component extends DCLogic {
+  state = { navOpen: false };
+  renderVals() {
+    let key = 'horse';
+    try {
+      const p = new URLSearchParams(location.search).get('c');
+      if (p && DATA[p]) key = p;
+    } catch (e) {}
+    const d = DATA[key];
+    return {
+      accent: this.props.accentColor ?? '#EE4A23',
+      noteDisp: (this.props.showAnnotations ?? true) ? 'flex' : 'none',
+      navDisplay: this.state.navOpen ? 'flex' : 'none',
+      openNav: () => this.setState({ navOpen: true }),
+      closeNav: () => this.setState({ navOpen: false }),
+      isHorse: key === 'horse',
+      isMother: key === 'mother',
+      isMoscow: key === 'moscow',
+      isRedBlue: key === 'redblue',
+      objKey: key,
+      ...d,
+    };
+  }
+}
+</script>
+</body>
+</html>
