@@ -9,7 +9,7 @@
 <x-dc>
 <helmet>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&amp;family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
 <style>
   *{box-sizing:border-box}
   html,body{margin:0}
@@ -17,8 +17,12 @@
   a{color:inherit;text-decoration:none}
   a:hover{color:var(--accent,#EE4A23)}
   @media (max-width:900px){
+    .r-page{padding:0 !important}
+    .r-hero-card{border-radius:0 !important;min-height:auto !important}
+    .r-hero-top{order:1}
+    .r-hero-fig{position:relative !important;width:100% !important;height:280px !important;top:auto !important;order:2}
+    .r-hero-body{order:3;padding:24px 22px 44px !important}
     .r-pad{padding:72px 22px !important}
-    .r-hero-fig{position:relative !important;width:100% !important;height:300px !important;top:auto !important}
     .r-gallery{grid-template-columns:repeat(2,1fr) !important;grid-auto-rows:200px !important}
     .r-faq{grid-template-columns:1fr !important;gap:28px !important}
   }
@@ -28,13 +32,13 @@
   }
 </style>
 </helmet>
-<div style="--accent:{{accent}};--note-disp:{{noteDisp}};max-width:1600px;margin:0 auto;padding:22px">
+<div class="r-page" style="--accent:{{accent}};--note-disp:{{noteDisp}};max-width:1600px;margin:0 auto;padding:22px">
 
   <!-- ===== ЭКРАН 1 · ХИРО ===== -->
-  <section data-screen-label="Хиро объекта" style="position:relative;min-height:660px;border-radius:22px;overflow:hidden;background:#161616;color:#fff;display:flex;flex-direction:column">
-    <span style="display:var(--note-disp,flex);position:absolute;top:20px;left:50%;transform:translateX(-50%);font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.12em;color:rgba(255,255,255,.32);z-index:3;white-space:nowrap">// ФОНОВОЕ ФОТО МОДЕЛИ ЗАПОЛНЯЕТ КАРТОЧКУ</span>
+  <section data-screen-label="Хиро объекта" class="r-hero-card" style="position:relative;min-height:660px;border-radius:22px;overflow:hidden;background:#161616;color:#fff;display:flex;flex-direction:column">
+    
 
-    <!-- модель в кадре справа (фоновый слой) -->
+    <!-- модель в кадре справа (фоновый слой) -->
     <div class="r-hero-fig" style="position:absolute;right:0;bottom:0;top:0;width:46%;display:flex;align-items:flex-end;justify-content:center;z-index:1;pointer-events:none">
       <sc-if value="{{ isHorse }}" hint-placeholder-val="{{ true }}">
         <div style="width:min(150px,38%);height:76%;background:var(--accent,#EE4A23)"></div>
@@ -60,8 +64,8 @@
       </sc-if>
     </div>
 
-    <!-- верхняя панель на всю ширину -->
-    <div style="position:relative;z-index:2;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:24px 40px">
+    <!-- верхняя панель на всю ширину -->
+    <div class="r-hero-top" style="position:relative;z-index:2;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:24px 40px">
       <a href="collection.html?c={{ collectionKey }}" style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.1em;color:#8f8f8f">← {{ collectionName }}</a>
       <div style="display:flex;align-items:center;gap:10px;font-size:15px;font-weight:500;color:#eee">Корзина
         <span style="width:30px;height:30px;background:#fff;color:#161616;border-radius:7px;transform:rotate(45deg);display:flex;align-items:center;justify-content:center">
@@ -71,7 +75,7 @@
     </div>
 
     <!-- контент слева -->
-    <div style="position:relative;z-index:2;display:flex;flex-direction:column;flex:1;padding:16px 40px 48px;max-width:660px">
+    <div class="r-hero-body" style="position:relative;z-index:2;display:flex;flex-direction:column;flex:1;padding:16px 40px 48px;max-width:660px">
       <h1 style="margin:14px 0 8px;font-size:clamp(38px,4.4vw,60px);font-weight:800;letter-spacing:-.02em;line-height:1.02">{{ name }}</h1>
       <sc-if value="{{ variant }}" hint-placeholder-val="{{ false }}">
         <div style="font-size:15px;color:#bdbdbd;margin-bottom:22px">Вариант росписи: {{ variant }}</div>
@@ -90,7 +94,7 @@
       </div>
 
       <div style="margin-top:auto;padding-top:44px;display:flex;flex-direction:column;gap:24px;align-items:flex-start">
-        <a href="#" style="font-size:16px;font-weight:700;letter-spacing:.05em;color:#fff;padding-bottom:9px;border-bottom:2px solid var(--accent,#EE4A23)">ПРИОБРЕСТИ В КОЛЛЕКЦИЮ</a>
+        <a href="#" style="font-size:16px;font-weight:700;letter-spacing:.05em;color:#fff;padding-bottom:9px;border-bottom:2px solid var(--accent,#EE4A23)">ПРИОБРЕСТИ В&nbsp;КОЛЛЕКЦИЮ</a>
         <a href="#" style="font-size:16px;font-weight:700;letter-spacing:.05em;color:#fff;padding-bottom:9px;border-bottom:2px solid #fff">ЗАПРОСИТЬ КОНСУЛЬТАЦИЮ</a>
       </div>
     </div>
@@ -161,9 +165,9 @@
   &quot;showAnnotations&quot;: {&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;}
 }">
 const MOTHER_DESC = [
-  'Серия ваз в основе которой — личный опыт и социальная рефлексия. Ваза с женской грудью переводит телесный, интимный опыт в плоскость декоративно-прикладного искусства.',
-  'Утилитарный предмет парадоксальным образом становится медиатором разговора о материнстве, телесности, границах приватного и публичного.',
-  'Проект находится в стадии разработки: на изображениях — концептуальные эскизы (с использованием ИИ), на основе которых создаются фарфоровые объекты.',
+  'Серия ваз в основе которой — личный опыт и социальная рефлексия. Ваза с женской грудью переводит телесный, интимный опыт в плоскость декоративно-прикладного искусства.',
+  'Утилитарный предмет парадоксальным образом становится медиатором разговора о материнстве, телесности, границах приватного и публичного.',
+  'Проект находится в стадии разработки: на изображениях — концептуальные эскизы (с использованием ИИ), на основе которых создаются фарфоровые объекты.',
 ];
 
 const OBJECTS = {
@@ -172,18 +176,18 @@ const OBJECTS = {
     name:'Купание красного коня', year:'2025', edition:'лимитированный тираж', price:'по запросу',
     specs:['Материал: фарфор','Надглазурная роспись','Драгоценные металлы: золото 365','Ручная работа','Автор: Илларионова Елена'],
     desc:[
-      'Первое произведение арт-студии «РЕДКО» — работа, с которой началась студия. Фарфор, надглазурная роспись, золото.',
-      'Проект сразу попал на выставку «Трын*Трава. Современный русский стиль» в Москве, октябрь 2025 года.',
-      'Каждый экземпляр создаётся вручную и существует в лимитированном тираже: ручная роспись делает его единственным в своём роде.',
+      'Первое произведение арт-студии «РЕДКО» — работа, с которой началась студия. Фарфор, надглазурная роспись, золото.',
+      'Проект сразу попал на выставку «Трын*Трава. Современный русский стиль» в Москве, октябрь 2025 года.',
+      'Каждый экземпляр создаётся вручную и существует в лимитированном тираже: ручная роспись делает его единственным в своём роде.',
     ],
   },
   'horse-coat': {
     collectionKey:'horse', collectionName:'Красный конь', shape:'horse',
-    name:'Конь в пальто', year:'2025', edition:'3 варианта росписи', price:'по запросу',
+    name:'Конь в пальто', year:'2025', edition:'3 варианта росписи', price:'по запросу',
     specs:['Материал: белый фарфор','Надглазурная роспись','3 варианта росписи','Ручная работа','Автор: Илларионова Елена'],
     desc:[
-      'Первый арт-объект из коллекции «12 фарфоровых», посвящённой переосмыслению культурных кодов России через призму восточного гороскопа.',
-      'Ироничный образ, рождённый на стыке эпох, превращён в изящную скульптуру из белого фарфора.',
+      'Первый арт-объект из коллекции «12 фарфоровых», посвящённой переосмыслению культурных кодов России через призму восточного гороскопа.',
+      'Ироничный образ, рождённый на стыке эпох, превращён в изящную скульптуру из белого фарфора.',
     ],
   },
   'horse-fiberglass': {
@@ -191,8 +195,8 @@ const OBJECTS = {
     name:'Купание красного коня · городской объект', year:'2026', edition:'2 × 3,2 м', price:'по запросу',
     specs:['Материал: стеклопластик','Акриловая роспись','Размер: 2 × 3,2 метра','Городской объект','Автор: Илларионова Елена'],
     desc:[
-      '«Купание красного коня» в увеличенном масштабе и в новом материале — стеклопластике.',
-      'Материал позволяет полностью повторить цвета и пропорции фарфорового изделия, создав уникальный объект городского искусства.',
+      '«Купание красного коня» в увеличенном масштабе и в новом материале — стеклопластике.',
+      'Материал позволяет полностью повторить цвета и пропорции фарфорового изделия, создав уникальный объект городского искусства.',
     ],
   },
   'mother-1-white': mother1('белый', '#e8e6e2'),
@@ -207,26 +211,26 @@ const OBJECTS = {
     desc:MOTHER_DESC,
   },
   'moscow-olymp': {
-    collectionKey:'moscow', collectionName:'Легенды и мифы Новой Москвы', shape:'moscow',
-    name:'Совещание на Олимпе', year:'2026', edition:'первая работа серии', price:'по запросу',
+    collectionKey:'moscow', collectionName:'Легенды и мифы Новой Москвы', shape:'moscow',
+    name:'Совещание на Олимпе', year:'2026', edition:'первая работа серии', price:'по запросу',
     specs:['Материал: керамика','Надглазурная роспись','Высота: 35 см','Форма античного прототипа','Автор: Илларионова Елена'],
     desc:[
-      'Первая работа серии «Легенды и мифы Новой Москвы». Древнегреческая чернофигурная вазопись превращается в хронику современной жизни.',
-      'Роспись покрывает обе стороны сосуда: вместо героев Эллады на вазе появляются новые персонажи и ритуалы мегаполиса.',
+      'Первая работа серии «Легенды и мифы Новой Москвы». Древнегреческая чернофигурная вазопись превращается в хронику современной жизни.',
+      'Роспись покрывает обе стороны сосуда: вместо героев Эллады на вазе появляются новые персонажи и ритуалы мегаполиса.',
     ],
   },
-  'moscow-bacchanalia': moscow('Вакханалия в зуме', 'Дионисийские пляски в онлайн-формате.'),
+  'moscow-bacchanalia': moscow('Вакханалия в зуме', 'Дионисийские пляски в онлайн-формате.'),
   'moscow-shopping': moscow('Богиня шопинга', 'Современная афродита торговых центров.'),
-  'moscow-sport': moscow('Быстрее, выше, сильнее', 'Ода спорту, марафонам и культу тела.'),
+  'moscow-sport': moscow('Быстрее, выше, сильнее', 'Ода спорту, марафонам и культу тела.'),
   'moscow-metro': moscow('Метро', '«Метро» — это просто четверть нашей жизни.'),
   'redblue-1': {
-    collectionKey:'redblue', collectionName:'Красная женщина и синий конь', shape:'redblue',
-    name:'Красная женщина и Синий конь', year:'2026', edition:'серия в разработке', price:'по запросу',
-    specs:['Материал: фарфор','Серия существует пока в ИИ-генерациях','Ручная работа','Автор: Илларионова Елена'],
+    collectionKey:'redblue', collectionName:'Красная женщина и синий конь', shape:'redblue',
+    name:'Красная женщина и Синий конь', year:'2026', edition:'серия в разработке', price:'по запросу',
+    specs:['Материал: фарфор','Серия существует пока в ИИ-генерациях','Ручная работа','Автор: Илларионова Елена'],
     desc:[
-      'Серия фарфоровых скульптур, исследующая пространство между личной мифологией и коллективной памятью.',
-      'Красная женщина и Синий конь появляются в разных ситуациях и пространствах, словно странствуют через один и тот же сон. Они не принадлежат определённому времени или месту, оставаясь постоянными спутниками друг друга, но никогда не объясняя своего присутствия.',
-      'Меня интересует не сюжет, а ощущение узнавания — когда образ кажется одновременно новым и давно существующим. Каждая скульптура становится самостоятельной главой этой истории, сохраняя пространство для интерпретации зрителя.',
+      'Серия фарфоровых скульптур, исследующая пространство между личной мифологией и коллективной памятью.',
+      'Красная женщина и Синий конь появляются в разных ситуациях и пространствах, словно странствуют через один и тот же сон. Они не принадлежат определённому времени или месту, оставаясь постоянными спутниками друг друга, но никогда не объясняя своего присутствия.',
+      'Меня интересует не сюжет, а ощущение узнавания — когда образ кажется одновременно новым и давно существующим. Каждая скульптура становится самостоятельной главой этой истории, сохраняя пространство для интерпретации зрителя.',
     ],
   },
 };
@@ -241,21 +245,21 @@ function mother1(variant, figFill){
 }
 function moscow(name, tag){
   return {
-    collectionKey:'moscow', collectionName:'Легенды и мифы Новой Москвы', shape:'moscow',
+    collectionKey:'moscow', collectionName:'Легенды и мифы Новой Москвы', shape:'moscow',
     name:name, year:'2026', edition:'сюжет серии', price:'по запросу',
     specs:['Материал: керамика','Надглазурная роспись','Форма античного прототипа','Автор: Илларионова Елена'],
     desc:[
       tag,
-      'Каждый сосуд повторяет форму античного прототипа — амфора, килик, канфар, гидрия или кратер, — но его роспись рассказывает о реалиях нашего времени.',
+      'Каждый сосуд повторяет форму античного прототипа — амфора, килик, канфар, гидрия или кратер, — но его роспись рассказывает о реалиях нашего времени.',
     ],
   };
 }
 
 const FAQ = [
-  { q:'Как упаковываем перед отправкой', a:'Каждая работа упаковывается вручную в защитные материалы и жёсткий короб, рассчитанный на транспортировку хрупкого фарфора.' },
-  { q:'Способы доставки и самовывоза', a:'Доставка по Москве и России, а также самовывоз из мастерской по договорённости. Условия обсуждаются индивидуально.' },
-  { q:'Как ухаживать за скульптурой', a:'Протирать сухой мягкой тканью, избегать ударов и резких перепадов температуры. Надглазурная роспись и золото не терпят абразивных средств.' },
-  { q:'Индивидуальное исполнение', a:'Возможны индивидуальные варианты росписи и цвета. Свяжитесь с автором, чтобы обсудить детали.' },
+  { q:'Как упаковываем перед отправкой', a:'Каждая работа упаковывается вручную в защитные материалы и жёсткий короб, рассчитанный на транспортировку хрупкого фарфора.' },
+  { q:'Способы доставки и самовывоза', a:'Доставка по Москве и России, а также самовывоз из мастерской по договорённости. Условия обсуждаются индивидуально.' },
+  { q:'Как ухаживать за скульптурой', a:'Протирать сухой мягкой тканью, избегать ударов и резких перепадов температуры. Надглазурная роспись и золото не терпят абразивных средств.' },
+  { q:'Индивидуальное исполнение', a:'Возможны индивидуальные варианты росписи и цвета. Свяжитесь с автором, чтобы обсудить детали.' },
 ];
 
 class Component extends DCLogic {
