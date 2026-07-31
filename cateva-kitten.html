@@ -1,12 +1,5 @@
 <!doctype html>
-<html lang="ru">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="color-scheme" content="light">
-  <title>Коммерческое предложение — Cateva Kitten Yoga</title>
-  <meta name="description" content="Коммерческое предложение на разработку сайта Cateva Kitten Yoga: дизайн и Tilda или дизайн и Next.js.">
-  <style>
+<html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="color-scheme" content="light"><title>Коммерческое предложение — Cateva Kitten Yoga</title><meta name="description" content="Коммерческое предложение на разработку сайта Cateva Kitten Yoga: дизайн и Tilda или дизайн и Next.js."><style>
     :root {
       --olive: #292929;
       --olive-dark: #121212;
@@ -95,6 +88,17 @@
       text-decoration: none;
       white-space: nowrap;
     }
+    .nav-right { display: flex; align-items: center; gap: 24px; }
+    .designer-credit {
+      color: inherit;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .04em;
+      text-decoration: none;
+      white-space: nowrap;
+      opacity: .65;
+    }
+    .designer-credit:hover { opacity: 1; }
     .nav-links { display: flex; align-items: center; gap: 20px; }
     .nav-links a {
       color: inherit;
@@ -228,6 +232,19 @@
     }
     .why-next strong { font-family: var(--serif); font-size: 26px; font-weight: 400; line-height: 1.05; }
     .why-next div:not(:first-child) { padding-left: 20px; border-left: 1px solid rgba(0,0,0,.2); font-size: 14px; }
+    .ecosystem-note {
+      margin-top: 20px;
+      padding: clamp(28px, 5vw, 54px);
+      display: grid;
+      grid-template-columns: .48fr 1.52fr;
+      gap: clamp(28px, 6vw, 80px);
+      border-radius: var(--radius);
+      color: var(--cream);
+      background: var(--coral-dark);
+    }
+    .ecosystem-mark { font-family: var(--serif); font-size: clamp(64px, 9vw, 122px); line-height: .8; letter-spacing: -.07em; }
+    .ecosystem-note h3 { max-width: 760px; margin-bottom: 20px; font-family: var(--serif); font-size: clamp(32px, 4vw, 54px); font-weight: 400; }
+    .ecosystem-note p { max-width: 760px; margin-bottom: 0; color: rgba(255,255,255,.7); }
 
     .estimate { background: #e9e9e9; }
     .estimate h2 { max-width: 890px; }
@@ -329,20 +346,60 @@
     .term { padding: 24px; border-radius: 18px; background: rgba(255,255,255,.55); }
     .term b { display: block; margin-bottom: 8px; font-size: 23px; }
 
-    .final {
-      min-height: 82svh;
-      padding-block: 90px;
-      display: grid;
-      place-items: center;
-      text-align: center;
-      color: var(--cream);
-      background: var(--coral);
+    .ideas { background: #ededed; }
+    .ideas-head { display: grid; grid-template-columns: 1.2fr .8fr; gap: 40px; align-items: end; margin-bottom: 58px; }
+    .ideas-head h2 { margin-bottom: 0; }
+    .ideas-head .lead { margin-bottom: 4px; font-size: clamp(18px, 2vw, 24px); color: var(--muted); }
+    .idea-grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 14px; }
+    .idea-card {
+      grid-column: span 4;
+      min-height: 420px;
+      padding: 28px;
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      background: var(--white);
+      display: flex;
+      flex-direction: column;
     }
-    .final h2 { max-width: 1050px; margin-inline: auto; font-size: clamp(60px, 11vw, 150px); }
-    .final p { max-width: 630px; margin: 0 auto 32px; font-size: 20px; }
-    .final .pill { text-decoration: none; }
+    .idea-card.wide { grid-column: span 8; }
+    .idea-card:nth-child(3), .idea-card:nth-child(4) { grid-column: span 6; }
+    .idea-card:nth-child(5) { grid-column: 1 / -1; }
+    .idea-card.dark { color: var(--cream); background: var(--olive-dark); }
+    .idea-number { margin-bottom: auto; color: var(--muted); font-size: 11px; font-weight: 800; letter-spacing: .12em; }
+    .dark .idea-number { color: rgba(255,255,255,.5); }
+    .idea-card h3 { margin: 52px 0 16px; font-family: var(--serif); font-size: clamp(28px, 3.5vw, 45px); font-weight: 400; }
+    .idea-card p { color: var(--muted); }
+    .idea-card.dark p { color: rgba(255,255,255,.68); }
+    .chips { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 20px; }
+    .chip { padding: 8px 11px; border: 1px solid var(--line); border-radius: 999px; font-size: 12px; }
+    .dark .chip { border-color: rgba(255,255,255,.25); }
+    .compact-list { padding: 0; margin: 18px 0 0; list-style: none; columns: 2; column-gap: 24px; }
+    .compact-list li { break-inside: avoid; padding: 7px 0; border-bottom: 1px solid var(--line); font-size: 13px; }
+    .dark .compact-list li { border-color: rgba(255,255,255,.18); }
+    .word-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; margin-top: 20px; }
+    .finnish-word { padding: 14px; border-radius: 12px; background: #ededed; }
+    .finnish-word b { display: block; font-family: var(--serif); font-size: 20px; font-weight: 400; }
+    .finnish-word span { color: var(--muted); font-size: 11px; }
+    .feature-groups { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 14px; }
+    .feature-group { padding: 28px; border-radius: 22px; color: var(--cream); background: var(--olive-dark); }
+    .feature-group h3 { margin-bottom: 24px; font-family: var(--serif); font-size: 30px; font-weight: 400; }
+    .feature-group ul { padding: 0; margin: 0; list-style: none; }
+    .feature-group li { padding: 9px 0; border-bottom: 1px solid rgba(255,255,255,.16); font-size: 13px; color: rgba(255,255,255,.74); }
+    .sell-idea { margin-top: 14px; padding: clamp(30px, 5vw, 60px); display: grid; grid-template-columns: 1fr 1fr; gap: 50px; border-radius: var(--radius); background: var(--white); }
+    .sell-quote { padding: 28px; border-radius: 18px; color: var(--cream); background: var(--coral-dark); font-family: var(--serif); font-size: clamp(30px, 4vw, 52px); line-height: 1.05; }
+    .sell-copy h3 { font-family: var(--serif); font-size: clamp(34px, 4vw, 52px); font-weight: 400; }
+    .sell-copy ul { padding-left: 20px; columns: 2; }
+    .roadmap { margin-top: 14px; padding: clamp(30px, 5vw, 60px); border-radius: var(--radius); color: var(--cream); background: var(--coral); }
+    .roadmap-head { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-bottom: 45px; }
+    .roadmap-head h3 { margin-bottom: 0; font-family: var(--serif); font-size: clamp(38px, 5vw, 68px); font-weight: 400; }
+    .roadmap-head p { color: rgba(255,255,255,.72); }
+    .roadmap-list { counter-reset: roadmap; display: grid; grid-template-columns: repeat(7, 1fr); }
+    .roadmap-item { counter-increment: roadmap; min-height: 170px; padding: 15px; border-top: 1px solid rgba(255,255,255,.5); border-right: 1px solid rgba(255,255,255,.22); font-size: 13px; }
+    .roadmap-item:last-child { border-right: 0; }
+    .roadmap-item::before { content: counter(roadmap, decimal-leading-zero); display: block; margin-bottom: 50px; font-family: var(--serif); font-size: 21px; }
     .footer { padding: 28px 0; color: var(--cream); background: var(--olive-dark); }
     .footer-inner { display: flex; justify-content: space-between; gap: 20px; font-size: 12px; opacity: .72; }
+    .footer a { color: inherit; }
 
     @media (max-width: 980px) {
       .nav-links a { display: none; }
@@ -355,17 +412,28 @@
       .trust-grid { grid-template-columns: 1fr; }
       .why-next { grid-template-columns: 1fr 1fr; }
       .why-next div:nth-child(2) { border-left: 0; padding-left: 0; }
+      .ecosystem-note { grid-template-columns: 1fr; }
       .calc-shell { grid-template-columns: 1fr; }
       .extras-grid, .steps { grid-template-columns: 1fr 1fr; }
       .step:nth-child(2) { border-right: 0; }
       .terms { grid-template-columns: 1fr; }
+      .ideas-head, .sell-idea, .roadmap-head { grid-template-columns: 1fr; }
+      .idea-card, .idea-card.wide { grid-column: span 6; }
+      .feature-groups { grid-template-columns: 1fr 1fr; }
+      .feature-group:last-child { grid-column: 1 / -1; }
+      .word-grid { grid-template-columns: repeat(3, 1fr); }
+      .roadmap-list { grid-template-columns: repeat(4, 1fr); }
+      .roadmap-item:nth-child(4) { border-right: 0; }
     }
 
     @media (max-width: 680px) {
       .wrap { width: min(100% - 24px, 1180px); }
       section { padding-block: 70px; }
+      h2 { font-size: clamp(36px, 11vw, 44px); hyphens: auto; }
       .nav-inner { min-height: 58px; }
       .brand { font-size: 17px; }
+      .nav-right { gap: 12px; }
+      .designer-credit { max-width: 112px; white-space: normal; text-align: right; line-height: 1.15; }
       .print { display: none; }
       .hero { min-height: auto; }
       .hero-copy { width: calc(100% - 40px); min-height: calc(100svh - 58px); padding: 58px 0 42px; gap: 50px; }
@@ -423,9 +491,20 @@
       .why-next div:not(:first-child) { padding: 18px 0 0; border-top: 1px solid rgba(0,0,0,.2); border-left: 0; }
       .payment-card h3 { flex-direction: column; }
       .calc-controls, .calc-result { padding: 28px 20px; }
+      .calc-result .sum { font-size: clamp(44px, 14vw, 58px); }
       .extras-grid, .steps { grid-template-columns: 1fr; }
       .step, .step:nth-child(2) { border-right: 0; }
       .footer-inner { flex-direction: column; }
+      .idea-grid { grid-template-columns: 1fr; }
+      .idea-card, .idea-card.wide { grid-column: auto; min-height: 360px; }
+      .idea-card:nth-child(3), .idea-card:nth-child(4), .idea-card:nth-child(5) { grid-column: auto; }
+      .compact-list { columns: 1; }
+      .word-grid, .feature-groups { grid-template-columns: 1fr; }
+      .feature-group:last-child { grid-column: auto; }
+      .sell-copy ul { columns: 1; }
+      .roadmap-list { grid-template-columns: 1fr 1fr; }
+      .roadmap-item { min-width: 0; }
+      .roadmap-item:nth-child(2n) { border-right: 0; }
     }
 
     @media print {
@@ -445,19 +524,20 @@
       .block { min-height: 42mm; }
       .tariff, .extra, .payment-card { break-inside: avoid; }
     }
-  </style>
-</head>
-<body>
+  </style></head><body>
   <nav class="nav" aria-label="Навигация по предложению">
     <div class="wrap nav-inner">
       <a class="brand" href="#top">Cateva Kitten Yoga</a>
-      <div class="nav-links">
-        <a href="#concept">Задача</a>
-        <a href="#scope">Состав сайта</a>
-        <a href="#tariffs">Тарифы</a>
-        <a href="#estimate">Смета</a>
-        <a href="#calculator">Расчёт</a>
-        <button class="print" type="button" onclick="window.print()">Сохранить PDF</button>
+      <div class="nav-right">
+        <a class="designer-credit" href="https://murinova-a.ru" target="_blank" rel="noopener">дизайнер Ангелина Муринова</a>
+        <div class="nav-links">
+          <a href="#concept">Задача</a>
+          <a href="#scope">Состав сайта</a>
+          <a href="#tariffs">Тарифы</a>
+          <a href="#estimate">Смета</a>
+          <a href="#calculator">Расчёт</a>
+          <button class="print" type="button" onclick="window.print()">Сохранить PDF</button>
+        </div>
       </div>
     </div>
   </nav>
@@ -468,11 +548,11 @@
         <div>
           <p class="eyebrow">Коммерческое предложение · 2026</p>
           <h1>Cateva<br>Kitten Yoga</h1>
-          <p class="hero-intro">Сайт для студии йоги с британскими котятами в Финляндии — убедительный для требовательной европейской аудитории и достаточно тёплый, чтобы передать характер проекта.</p>
+          <p class="hero-intro">Сайт для&nbsp;студии йоги с&nbsp;британскими котятами в&nbsp;Финляндии — убедительный для&nbsp;требовательной европейской аудитории и&nbsp;достаточно тёплый, чтобы передать характер проекта.</p>
         </div>
         <div class="hero-meta">
           <div><span class="small" style="color:rgba(255,255,255,.7)">Рекомендуемый формат</span><strong>Дизайн + Next.js</strong></div>
-          <span class="pill"><span class="dot"></span> готов к развитию</span>
+          <span class="pill"><span class="dot"></span>готов к&nbsp;развитию</span>
         </div>
       </div>
     </header>
@@ -481,13 +561,13 @@
       <div class="wrap intro-grid">
         <div class="manifesto">
           <p class="eyebrow">01 · Задача</p>
-          <h2>Строгость и качество. Котята и эмоция.</h2>
-          <p class="lead">Сайт должен объединить две стороны бренда: европейскую аккуратность, прозрачность и доказательность — с живой, мягкой атмосферой занятий с котятами.</p>
+          <h2>Строгость и&nbsp;качество. Котята и&nbsp;эмоция.</h2>
+          <p class="lead">Сайт должен объединить две стороны бренда: европейскую аккуратность, прозрачность и&nbsp;доказательность — с&nbsp;живой, мягкой атмосферой занятий с&nbsp;котятами.</p>
           <div class="pain-grid">
-            <article class="pain"><b>Дизайн-код</b>Единая система цветов, типографики, фотографий и композиции вместо визуально разрозненных страниц.</article>
-            <article class="pain"><b>Доверие</b>Фотографии, видео, отзывы, информация о преподавателях, студии, животных и правилах проведения занятий.</article>
-            <article class="pain"><b>Актуальность</b>Современная редакционная подача без ощущения старомодного шаблонного сайта.</article>
-            <article class="pain"><b>Рост</b>Основа для продвижения в Европе, подключения оплаты, автоматической брони и будущих направлений бренда.</article>
+            <article class="pain"><b>Дизайн-код</b>Единая система цветов, типографики, фотографий и&nbsp;композиции вместо визуально разрозненных страниц.</article>
+            <article class="pain"><b>Доверие</b>Фотографии, видео, отзывы, информация о&nbsp;преподавателях, студии, животных и&nbsp;правилах проведения занятий.</article>
+            <article class="pain"><b>Актуальность</b>Современная редакционная подача без&nbsp;ощущения старомодного шаблонного сайта.</article>
+            <article class="pain"><b>Рост</b>Основа для&nbsp;продвижения в&nbsp;Европе, подключения оплаты, автоматической брони и&nbsp;будущих направлений бренда.</article>
           </div>
         </div>
       </div>
@@ -500,23 +580,23 @@
             <p class="eyebrow">02 · Состав сайта</p>
             <h2>14 смысловых блоков лендинга</h2>
           </div>
-          <p>Каждый блок проектируется отдельно: до 1 часа на дизайн и до 1 часа на реализацию. Для трёх сложных Next.js-блоков заложено по 2 часа.</p>
+          <p>Каждый блок проектируется отдельно: до&nbsp;1 часа на&nbsp;дизайн и&nbsp;до&nbsp;1 часа на&nbsp;реализацию. Для&nbsp;трёх сложных Next.js-блоков заложено по&nbsp;2 часа.</p>
         </div>
         <div class="blocks">
-          <article class="block"><h3>Шапка и навигация</h3><p>Логотип, разделы, быстрый переход к расписанию и бронированию.</p></article>
-          <article class="block"><h3>Первый экран</h3><p>Суть предложения, география, ключевой визуал и основной призыв.</p></article>
-          <article class="block"><h3>О Kitten Yoga</h3><p>Концепция занятий и отличие проекта от обычной йога-студии.</p></article>
-          <article class="block"><h3>Доверие и безопасность</h3><p>Забота о гостях и котятах, правила, чистота и организация.</p></article>
-          <article class="block"><h3>Котята</h3><p>Британские голубые котята, карточки, факты и медиаматериалы.</p></article>
-          <article class="block"><h3>Преподаватели</h3><p>Опыт, фотографии и короткие профессиональные профили.</p></article>
-          <article class="block"><h3>Студия и локация</h3><p>Пространство, атмосфера, адрес и важная информация о визите.</p></article>
-          <article class="block"><h3>Как проходит занятие</h3><p>Понятный сценарий от прихода до завершения сессии.</p></article>
-          <article class="block"><h3>Фото и видео</h3><p>Динамичная галерея, подтверждающая реальную атмосферу проекта.</p></article>
-          <article class="block"><h3>Отзывы гостей</h3><p>Социальное доказательство для требовательной аудитории.</p></article>
-          <article class="block"><h3>Даты и бронирование</h3><p>Переход к выбору события, оплате и подтверждению участия.</p></article>
-          <article class="block"><h3>FAQ</h3><p>Возраст, одежда, аллергии, язык занятия, отмена и перенос.</p></article>
-          <article class="block"><h3>Контакты</h3><p>Соцсети, обратная связь, адрес и юридическая информация.</p></article>
-          <article class="block"><h3>Подвал сайта</h3><p>Навигация, документы, политика конфиденциальности и копирайт.</p></article>
+          <article class="block"><h3>Шапка и&nbsp;навигация</h3><p>Логотип, разделы, быстрый переход к&nbsp;расписанию и&nbsp;бронированию.</p></article>
+          <article class="block"><h3>Первый экран</h3><p>Суть предложения, география, ключевой визуал и&nbsp;основной призыв.</p></article>
+          <article class="block"><h3>О&nbsp;Kitten Yoga</h3><p>Концепция занятий и&nbsp;отличие проекта от&nbsp;обычной йога-студии.</p></article>
+          <article class="block"><h3>Доверие и&nbsp;безопасность</h3><p>Забота о&nbsp;гостях и&nbsp;котятах, правила, чистота и&nbsp;организация.</p></article>
+          <article class="block"><h3>Котята</h3><p>Британские голубые котята, карточки, факты и&nbsp;медиаматериалы.</p></article>
+          <article class="block"><h3>Преподаватели</h3><p>Опыт, фотографии и&nbsp;короткие профессиональные профили.</p></article>
+          <article class="block"><h3>Студия и&nbsp;локация</h3><p>Пространство, атмосфера, адрес и&nbsp;важная информация о&nbsp;визите.</p></article>
+          <article class="block"><h3>Как&nbsp;проходит занятие</h3><p>Понятный сценарий от&nbsp;прихода до&nbsp;завершения сессии.</p></article>
+          <article class="block"><h3>Фото и&nbsp;видео</h3><p>Динамичная галерея, подтверждающая реальную атмосферу проекта.</p></article>
+          <article class="block"><h3>Отзывы гостей</h3><p>Социальное доказательство для&nbsp;требовательной аудитории.</p></article>
+          <article class="block"><h3>Даты и&nbsp;бронирование</h3><p>Переход к&nbsp;выбору события, оплате и&nbsp;подтверждению участия.</p></article>
+          <article class="block"><h3>FAQ</h3><p>Возраст, одежда, аллергии, язык занятия, отмена и&nbsp;перенос.</p></article>
+          <article class="block"><h3>Контакты</h3><p>Соцсети, обратная связь, адрес и&nbsp;юридическая информация.</p></article>
+          <article class="block"><h3>Подвал сайта</h3><p>Навигация, документы, политика конфиденциальности и&nbsp;копирайт.</p></article>
         </div>
       </div>
     </section>
@@ -524,9 +604,9 @@
     <section class="trust">
       <div class="wrap trust-grid">
         <div class="trust-copy">
-          <p class="eyebrow">Не просто «милый сайт»</p>
+          <p class="eyebrow">Не&nbsp;просто «милый сайт»</p>
           <h2>Доказательства продают лучше обещаний.</h2>
-          <p class="lead">Для аудитории в Финляндии и Европе важны конкретика, безопасность и прозрачный процесс. Поэтому фото, отзывы, правила, преподаватели и понятная оплата становятся частью пользовательского сценария, а не декоративным наполнением.</p>
+          <p class="lead">Для&nbsp;аудитории в&nbsp;Финляндии и&nbsp;Европе важны конкретика, безопасность и&nbsp;прозрачный процесс. Поэтому фото, отзывы, правила, преподаватели и&nbsp;понятная оплата становятся частью пользовательского сценария, а&nbsp;не&nbsp;декоративным наполнением.</p>
         </div>
       </div>
     </section>
@@ -536,41 +616,49 @@
         <div class="compare-top">
           <div>
             <p class="eyebrow">03 · Два тарифа</p>
-            <h2>Быстрый запуск или цифровая основа для роста</h2>
+            <h2>Быстрый запуск или&nbsp;цифровая основа для&nbsp;роста</h2>
           </div>
         </div>
         <div class="compare-cards">
           <article class="tariff">
             <span class="tariff-tag pill">Tilda</span>
             <h3>Дизайн + Tilda</h3>
-            <p>Подходит, если приоритет — быстрее запустить один лендинг с готовыми интеграциями и минимальной технической частью.</p>
+            <p>Подходит, если приоритет — быстрее запустить один лендинг с&nbsp;готовыми интеграциями и&nbsp;минимальной технической частью.</p>
             <div class="price">77 500 ₽ <span>базовая разработка</span></div>
             <ul class="features">
               <li>Индивидуальная визуальная концепция</li>
-              <li>14 блоков дизайна и сборки</li>
+              <li>14 блоков дизайна и&nbsp;сборки</li>
               <li>Готовая интеграция оплаты — +5 000 ₽</li>
-              <li>Зависимость от тарифа и возможностей Tilda</li>
+              <li>Зависимость от&nbsp;тарифа и&nbsp;возможностей Tilda</li>
             </ul>
           </article>
           <article class="tariff recommended">
-            <span class="tariff-tag pill"><span class="dot"></span> Рекомендуем</span>
+            <span class="tariff-tag pill"><span class="dot"></span>Рекомендуем</span>
             <h3>Дизайн + Next.js</h3>
-            <p>Подходит для долгосрочного продвижения в Европе, высокой скорости, гибкого SEO и развития проекта без потолка конструктора.</p>
+            <p>Подходит для&nbsp;долгосрочного продвижения в&nbsp;Европе, высокой скорости, гибкого SEO и&nbsp;развития проекта без&nbsp;потолка конструктора.</p>
             <div class="price">108 500 ₽ <span>базовая разработка</span></div>
             <ul class="features">
               <li>Индивидуальная визуальная концепция</li>
-              <li>14 блоков и собственная кодовая база</li>
-              <li>CMS для самостоятельных обновлений</li>
+              <li>14 блоков и&nbsp;собственная кодовая база</li>
+              <li>CMS для&nbsp;самостоятельных обновлений</li>
               <li>Полноценная интеграция оплаты — +12 000 ₽</li>
-              <li>Готовность к бронированию и новым направлениям</li>
+              <li>Готовность к&nbsp;бронированию и&nbsp;новым направлениям</li>
             </ul>
           </article>
         </div>
         <div class="why-next">
           <div><strong>Почему Next.js стратегически выгоднее</strong></div>
-          <div><b>SEO и скорость</b><br>Контроль метаданных, структуры, индексации и производительности.</div>
-          <div><b>Масштабирование</b><br>Личный кабинет, расписание, бронь котят и каталог можно добавлять поэтапно.</div>
-          <div><b>Независимость</b><br>Сайт принадлежит проекту и не ограничен логикой одного конструктора.</div>
+          <div><b>SEO и&nbsp;скорость</b><br>Контроль метаданных, структуры, индексации и&nbsp;производительности.</div>
+          <div><b>Масштабирование</b><br>Личный кабинет, расписание, бронь котят и&nbsp;каталог можно добавлять поэтапно.</div>
+          <div><b>Независимость</b><br>Сайт принадлежит проекту и&nbsp;не&nbsp;ограничен логикой одного конструктора.</div>
+        </div>
+        <div class="ecosystem-note">
+          <div class="ecosystem-mark">01→03</div>
+          <div>
+            <p class="eyebrow">Инвестиция в&nbsp;экосистему Cateva</p>
+            <h3>Первый сайт создаёт основу сразу для&nbsp;нескольких проектов</h3>
+            <p>Визуальные принципы, повторно используемые компоненты, CMS и&nbsp;техническая архитектура создаются один раз. Питомник, товары для&nbsp;кошек и&nbsp;хозяев, керамика и&nbsp;следующие направления смогут использовать готовый фундамент. Поэтому стоимость следующих продуктов будет существенно ниже стоимости первого сайта, а&nbsp;запуск — значительно быстрее.</p>
+          </div>
         </div>
       </div>
     </section>
@@ -581,56 +669,54 @@
         <h2>Каждая часть посчитана отдельно</h2>
         <div class="table-wrap">
           <table>
-            <thead>
-              <tr><th>Этап / блок</th><th>Tilda, ч</th><th>Tilda, ₽</th><th>Next.js, ч</th><th>Next.js, ₽</th></tr>
-            </thead>
+            <thead><tr><th>Этап / блок</th><th>Tilda, ч</th><th>Tilda, ₽</th><th>Next.js, ч</th><th>Next.js, ₽</th></tr></thead>
             <tbody>
-              <tr><td>Аудит старого сайта</td><td>—</td><td>бесплатно</td><td>—</td><td>бесплатно</td></tr>
+              <tr><td>Аудит старого сайта</td><td>—</td><td>в&nbsp;подарок</td><td>—</td><td>в&nbsp;подарок</td></tr>
               <tr><td>Одна визуальная концепция</td><td>3</td><td>7 500</td><td>3</td><td>7 500</td></tr>
-              <tr><td>Шапка и навигация</td><td>2</td><td>5 000</td><td>2</td><td>5 500</td></tr>
+              <tr><td>Шапка и&nbsp;навигация</td><td>2</td><td>5 000</td><td>2</td><td>5 500</td></tr>
               <tr><td>Первый экран</td><td>2</td><td>5 000</td><td>2</td><td>5 500</td></tr>
-              <tr><td>О Kitten Yoga</td><td>2</td><td>5 000</td><td>2</td><td>5 500</td></tr>
-              <tr><td>Доверие и безопасность</td><td>2</td><td>5 000</td><td>2</td><td>5 500</td></tr>
+              <tr><td>О&nbsp;Kitten Yoga</td><td>2</td><td>5 000</td><td>2</td><td>5 500</td></tr>
+              <tr><td>Доверие и&nbsp;безопасность</td><td>2</td><td>5 000</td><td>2</td><td>5 500</td></tr>
               <tr><td>Котята — сложный блок</td><td>2</td><td>5 000</td><td>3</td><td>8 500</td></tr>
               <tr><td>Преподаватели</td><td>2</td><td>5 000</td><td>2</td><td>5 500</td></tr>
-              <tr><td>Студия и локация</td><td>2</td><td>5 000</td><td>2</td><td>5 500</td></tr>
-              <tr><td>Как проходит занятие</td><td>2</td><td>5 000</td><td>2</td><td>5 500</td></tr>
-              <tr><td>Фото и видео — сложный блок</td><td>2</td><td>5 000</td><td>3</td><td>8 500</td></tr>
+              <tr><td>Студия и&nbsp;локация</td><td>2</td><td>5 000</td><td>2</td><td>5 500</td></tr>
+              <tr><td>Как&nbsp;проходит занятие</td><td>2</td><td>5 000</td><td>2</td><td>5 500</td></tr>
+              <tr><td>Фото и&nbsp;видео — сложный блок</td><td>2</td><td>5 000</td><td>3</td><td>8 500</td></tr>
               <tr><td>Отзывы гостей</td><td>2</td><td>5 000</td><td>2</td><td>5 500</td></tr>
-              <tr><td>Даты и бронирование — сложный блок</td><td>2</td><td>5 000</td><td>3</td><td>8 500</td></tr>
+              <tr><td>Даты и&nbsp;бронирование — сложный блок</td><td>2</td><td>5 000</td><td>3</td><td>8 500</td></tr>
               <tr><td>FAQ</td><td>2</td><td>5 000</td><td>2</td><td>5 500</td></tr>
               <tr><td>Контакты</td><td>2</td><td>5 000</td><td>2</td><td>5 500</td></tr>
               <tr><td>Подвал сайта</td><td>2</td><td>5 000</td><td>2</td><td>5 500</td></tr>
-              <tr><td>CMS для обновления данных</td><td>—</td><td>в платформе</td><td>3</td><td>9 000</td></tr>
-              <tr><td>Публикация и настройка</td><td>—</td><td>включено</td><td>2</td><td>6 000</td></tr>
-              <tr><td>Тестирование</td><td>—</td><td>бесплатно</td><td>—</td><td>бесплатно</td></tr>
+              <tr><td>CMS для&nbsp;обновления данных</td><td>—</td><td>в&nbsp;платформе</td><td>3</td><td>9 000</td></tr>
+              <tr><td>Публикация и&nbsp;настройка</td><td>—</td><td>включено</td><td>2</td><td>6 000</td></tr>
+              <tr><td>Тестирование</td><td>—</td><td>в&nbsp;подарок</td><td>—</td><td>в&nbsp;подарок</td></tr>
               <tr class="total-row"><td>Базовая стоимость</td><td>31</td><td>77 500</td><td>39</td><td>108 500</td></tr>
               <tr><td>Подключение оплаты</td><td>2</td><td>5 000</td><td>4</td><td>12 000</td></tr>
-              <tr class="total-row"><td>Итого с системой оплаты</td><td>33</td><td>82 500</td><td>43</td><td>120 500</td></tr>
+              <tr class="total-row"><td>Итого с&nbsp;системой оплаты</td><td>33</td><td>82 500</td><td>43</td><td>120 500</td></tr>
             </tbody>
           </table>
         </div>
-        <p class="estimate-note">Ставки: дизайн и работы на Tilda — 2 500 ₽/ч; разработка Next.js — 3 000 ₽/ч. В стоимости блоков Next.js учтены 1 час дизайна и 1–2 часа разработки.</p>
+        <p class="estimate-note">Ставки: дизайн и&nbsp;работы на&nbsp;Tilda — 2 500 ₽/ч; разработка Next.js — 3 000 ₽/ч. В&nbsp;стоимости блоков Next.js учтены 1 час дизайна и&nbsp;1–2 часа разработки.</p>
       </div>
     </section>
 
     <section class="payment" id="payment">
       <div class="wrap payment-grid">
         <div>
-          <p class="eyebrow">05 · Оплата на сайте</p>
-          <h2>Путь от интереса до брони — без долгой переписки</h2>
+          <p class="eyebrow">05 · Оплата на&nbsp;сайте</p>
+          <h2>Путь от&nbsp;интереса до&nbsp;брони — без&nbsp;долгой переписки</h2>
         </div>
         <div class="payment-options">
           <article class="payment-card">
             <h3>Tilda: готовый модуль <span>+5 000 ₽</span></h3>
-            <p>Подключение поддерживаемого платёжного сервиса, настройка формы заказа и проверка успешного платежа. Быстро, но сценарий ограничен возможностями платформы и выбранной интеграции.</p>
+            <p>Подключение поддерживаемого платёжного сервиса, настройка формы заказа и&nbsp;проверка успешного платежа. Быстро, но&nbsp;сценарий ограничен возможностями платформы и&nbsp;выбранной интеграции.</p>
           </article>
           <article class="payment-card next">
             <h3>Next.js: собственный сценарий <span>+12 000 ₽</span></h3>
-            <p>Интеграция с API выбранного европейского провайдера, обработка результата платежа и техническая основа для статусов заказа. Такой подход проще расширить до расписания, предоплаты, промокодов и автоматической брони.</p>
+            <p>Интеграция с&nbsp;API выбранного европейского провайдера, обработка результата платежа и&nbsp;техническая основа для&nbsp;статусов заказа. Такой подход проще расширить до&nbsp;расписания, предоплаты, промокодов и&nbsp;автоматической брони.</p>
           </article>
-          <div class="future"><b>На будущее:</b> тот же фундамент можно использовать для бронирования котят с предоплатой — чтобы сократить переписку и фиксировать намерение покупателя автоматически.</div>
-          <p class="small" style="color:rgba(255,255,255,.7)">Комиссия и абонентская плата платёжного сервиса не входят в смету и зависят от выбранного провайдера и страны регистрации бизнеса.</p>
+          <div class="future"><b>На&nbsp;будущее:</b> тот же&nbsp;фундамент можно использовать для&nbsp;бронирования котят с&nbsp;предоплатой — чтобы сократить переписку и&nbsp;фиксировать намерение покупателя автоматически.</div>
+          <p class="small" style="color:rgba(255,255,255,.7)">Комиссия и&nbsp;абонентская плата платёжного сервиса не&nbsp;входят в&nbsp;смету и&nbsp;зависят от&nbsp;выбранного провайдера и&nbsp;страны регистрации бизнеса.</p>
         </div>
       </div>
     </section>
@@ -645,25 +731,25 @@
               <span class="calc-label">Платформа</span>
               <div class="platforms">
                 <label class="choice"><input type="radio" name="platform" value="tilda"><span><b>Tilda</b><small>77 500 ₽</small></span></label>
-                <label class="choice"><input type="radio" name="platform" value="next" checked><span><b>Next.js</b><small>108 500 ₽</small></span></label>
+                <label class="choice"><input type="radio" name="platform" value="next" checked=""><span><b>Next.js</b><small>108 500 ₽</small></span></label>
               </div>
             </div>
             <div class="calc-group">
               <span class="calc-label">Дополнительные работы</span>
               <div class="addons">
-                <label class="addon"><input id="addon-payment" type="checkbox" checked><b>Система оплаты</b><em id="payment-price">+12 000 ₽</em></label>
-                <label class="addon"><input id="addon-seo" type="checkbox"><b>Базовая SEO-настройка</b><em id="seo-price">+6 000 ₽</em></label>
-                <label class="addon"><input id="addon-email" type="checkbox"><b>Доменная почта</b><em>+3 000 ₽</em></label>
+                <label class="addon"><input id="addon-payment" type="checkbox" checked=""><b>Система оплаты</b><em id="payment-price">+12&nbsp;000 ₽</em></label>
+                <label class="addon"><input id="addon-seo" type="checkbox"><b>Базовая SEO-настройка</b><em id="seo-price">+6&nbsp;000 ₽</em></label>
+                <label class="addon"><input id="addon-email" type="checkbox"><b>Доменная почта</b><em>+6 000 ₽</em></label>
               </div>
             </div>
-            <p class="small">Расчёт помогает сравнить конфигурации. Финальная смета фиксируется после выбора платёжного провайдера и согласования контента.</p>
+            <p class="small">Расчёт помогает сравнить конфигурации. Финальная смета фиксируется после выбора платёжного провайдера и&nbsp;согласования контента.</p>
           </div>
           <aside class="calc-result" aria-live="polite">
             <div>
               <p class="eyebrow">Итог проекта</p>
-              <div class="sum" id="total">120 500 ₽<small id="duration">ориентир: 3–4 недели</small></div>
+              <div class="sum" id="total">120&nbsp;500 ₽<small id="duration">ориентир: 3–4 недели</small></div>
             </div>
-            <ul class="calc-lines" id="calc-lines"></ul>
+            <ul class="calc-lines" id="calc-lines"><li><span>Дизайн + Next.js</span><b>108&nbsp;500 ₽</b></li><li><span>Система оплаты</span><b>12&nbsp;000 ₽</b></li></ul>
           </aside>
         </div>
       </div>
@@ -671,13 +757,13 @@
 
     <section class="extras">
       <div class="wrap">
-        <p class="eyebrow">07 · Дополнительно и регулярно</p>
-        <h2>Расходы после запуска — заранее и прозрачно</h2>
+        <p class="eyebrow">07 · Дополнительно и&nbsp;регулярно</p>
+        <h2>Расходы после запуска — заранее и&nbsp;прозрачно</h2>
         <div class="extras-grid">
-          <article class="extra"><span class="extra-price">+5 000 / +6 000 ₽</span><h3>SEO-настройка</h3><p>2 часа. Для Tilda — 5 000 ₽, для Next.js — 6 000 ₽. Метаданные, техническая база индексации и основные настройки страниц.</p></article>
-          <article class="extra"><span class="extra-price">3 000 ₽</span><h3>Доменная почта</h3><p>До 2 часов, фиксированная стоимость для обоих тарифов. Настройка выполняется исполнителем.</p></article>
-          <article class="extra"><span class="extra-price">€7–10 / месяц</span><h3>Хостинг Next.js</h3><p>Ориентировочный регулярный расход. Конкретная платформа выбирается с учётом региона и нагрузки.</p></article>
-          <article class="extra"><span class="extra-price">€4–10 / месяц</span><h3>Почтовый сервис</h3><p>Регулярная оплата сервиса для доменной почты. Домен и комиссии эквайринга оплачиваются отдельно.</p></article>
+          <article class="extra"><span class="extra-price">+5 000 / +6 000 ₽</span><h3>SEO-настройка</h3><p>2 часа. Для&nbsp;Tilda — 5 000 ₽, для&nbsp;Next.js — 6 000 ₽. Метаданные, техническая база индексации и&nbsp;основные настройки страниц.</p></article>
+          <article class="extra"><span class="extra-price">6 000 ₽</span><h3>Доменная почта</h3><p>2 часа, фиксированная стоимость для&nbsp;обоих тарифов. Настройка выполняется исполнителем.</p></article>
+          <article class="extra"><span class="extra-price">€7–10 / месяц</span><h3>Хостинг Next.js</h3><p>Ориентировочный регулярный расход. Конкретная платформа выбирается с&nbsp;учётом региона и&nbsp;нагрузки.</p></article>
+          <article class="extra"><span class="extra-price">€4–10 / месяц</span><h3>Почтовый сервис</h3><p>Регулярная оплата сервиса для&nbsp;доменной почты. Домен и&nbsp;комиссии эквайринга оплачиваются отдельно.</p></article>
         </div>
       </div>
     </section>
@@ -685,27 +771,68 @@
     <section class="process">
       <div class="wrap">
         <p class="eyebrow">08 · Процесс</p>
-        <h2>От визуальной идеи до опубликованного сайта</h2>
+        <h2>От&nbsp;визуальной идеи до&nbsp;опубликованного сайта</h2>
         <div class="steps">
-          <article class="step"><b>01</b><h3>Материалы</h3><p>Получаем брендбук, фото, видео, отзывы и доступ к старому сайту.</p></article>
-          <article class="step"><b>02</b><h3>Концепция</h3><p>Создаём одно цельное визуальное направление и согласуем ключевой экран.</p></article>
-          <article class="step"><b>03</b><h3>Дизайн и сборка</h3><p>Последовательно проектируем и реализуем 14 блоков.</p></article>
-          <article class="step"><b>04</b><h3>Проверка и запуск</h3><p>Тестируем сценарии, подключаем сервисы и публикуем сайт.</p></article>
+          <article class="step"><b>01</b><h3>Материалы</h3><p>Получаем брендбук, фото, видео, отзывы и&nbsp;доступ к&nbsp;старому сайту.</p></article>
+          <article class="step"><b>02</b><h3>Концепция</h3><p>Создаём одно цельное визуальное направление и&nbsp;согласуем ключевой экран.</p></article>
+          <article class="step"><b>03</b><h3>Дизайн и&nbsp;сборка</h3><p>Последовательно проектируем и&nbsp;реализуем 14 блоков.</p></article>
+          <article class="step"><b>04</b><h3>Проверка и&nbsp;запуск</h3><p>Тестируем сценарии, подключаем сервисы и&nbsp;публикуем сайт.</p></article>
         </div>
         <div class="terms">
-          <div class="term"><b>2–3 недели</b>Ориентировочный срок для тарифа Tilda.</div>
-          <div class="term"><b>3–4 недели</b>Ориентировочный срок для Next.js.</div>
+          <div class="term"><b>2–3 недели</b>Ориентировочный срок для&nbsp;тарифа Tilda.</div>
+          <div class="term"><b>3–4 недели</b>Ориентировочный срок для&nbsp;Next.js.</div>
           <div class="term"><b>40 / 30 / 30</b>Оплата: старт, утверждение дизайна, запуск проекта.</div>
         </div>
       </div>
     </section>
 
-    <section class="final">
+    <section class="ideas" id="ideas">
       <div class="wrap">
-        <p class="eyebrow">Следующий сезон начинается с сильной основы</p>
-        <h2>Предлагаю двигаться с Next.js</h2>
-        <p>Он дороже на старте, но лучше соответствует цели проекта: выходу на европейскую аудиторию, органическому продвижению и будущей автоматизации бронирования.</p>
-        <a class="pill" href="#tariffs"><span class="dot"></span> вернуться к сравнению</a>
+        <div class="ideas-head">
+          <div><p class="eyebrow">09 · Возможности развития</p><h2>Идеи для&nbsp;вашего сайта</h2></div>
+          <p class="lead">которые мы&nbsp;собрали в&nbsp;результате общения</p>
+        </div>
+        <div class="idea-grid">
+          <article class="idea-card wide dark">
+            <span class="idea-number">01 · Национальная идентичность</span>
+            <h3>«Финская тишина» как&nbsp;продукт</h3>
+            <p>Занятие можно позиционировать не&nbsp;просто как&nbsp;йогу с&nbsp;котятами, а&nbsp;как&nbsp;редкую возможность снизить сенсорную нагрузку. Это отличает проект от&nbsp;шумного развлекательного формата.</p>
+            <div class="chips"><span class="chip">небольшое количество гостей</span><span class="chip">без&nbsp;громкой музыки</span><span class="chip">мягкий свет</span><span class="chip">спокойный темп</span><span class="chip">уважение к&nbsp;границам</span><span class="chip">возможность наблюдать</span></div>
+          </article>
+          <article class="idea-card">
+            <span class="idea-number">02 · Фирменный показатель</span><h3>Northern Calm Index</h3>
+            <p>Понятная эмоциональная характеристика каждой сессии — не&nbsp;медицинский рейтинг, а&nbsp;помощь при&nbsp;выборе занятия.</p>
+            <div class="chips"><span class="chip">интенсивность</span><span class="chip">участники</span><span class="chip">длительность</span><span class="chip">активность котят</span><span class="chip">взаимодействие</span><span class="chip">язык</span><span class="chip">уровень шума</span></div>
+          </article>
+          <article class="idea-card">
+            <span class="idea-number">03 · Доверие</span><h3>Kitten Welfare Standard</h3>
+            <p>Собственный стандарт Cateva Care станет сильным доказательством ответственного отношения к&nbsp;животным.</p>
+            <ul class="compact-list"><li>время участия котят</li><li>зоны отдыха</li><li>периоды отдыха</li><li>количество гостей</li><li>гигиена</li><li>наблюдение за&nbsp;состоянием</li><li>правила взаимодействия</li></ul>
+          </article>
+          <article class="idea-card">
+            <span class="idea-number">04 · Эмоциональная связь</span><h3>Паспорта котят</h3>
+            <p>Карточка знакомит гостя с&nbsp;характером котёнка и&nbsp;одновременно объясняет правила бережного общения.</p>
+            <ul class="compact-list"><li>имя и&nbsp;возраст</li><li>характер</li><li>любимое занятие</li><li>способ общения</li><li>личные границы</li><li>текущий статус</li></ul>
+          </article>
+          <article class="idea-card wide">
+            <span class="idea-number">05 · Визуальный язык</span><h3>Финская типографическая система</h3>
+            <p>Идентичность можно передать без&nbsp;флагов, оленей, саун и&nbsp;декоративных «скандинавских» паттернов: через строгую модульную сетку, крупную типографику, свободное пространство, точные подписи, монохромные фотографии и&nbsp;графику культурных афиш.</p>
+            <div class="word-grid"><div class="finnish-word"><b>Rauha</b><span>спокойствие</span></div><div class="finnish-word"><b>Hiljaisuus</b><span>тишина</span></div><div class="finnish-word"><b>Lempeys</b><span>мягкость</span></div><div class="finnish-word"><b>Luottamus</b><span>доверие</span></div><div class="finnish-word"><b>Hyvinvointi</b><span>благополучие</span></div></div>
+          </article>
+        </div>
+        <div class="feature-groups">
+          <article class="feature-group"><p class="eyebrow">Первый запуск</p><h3>Сразу полезно</h3><ul><li>расписание ближайших занятий</li><li>количество оставшихся мест</li><li>онлайн-оплата и&nbsp;лист ожидания</li><li>письмо и&nbsp;календарное приглашение</li><li>FAQ, аллергии и&nbsp;одежда</li><li>правила общения с&nbsp;котятами</li><li>финская и&nbsp;английская версии</li><li>отзывы с&nbsp;фотографиями занятий</li><li>проезд и&nbsp;общественный транспорт</li></ul></article>
+          <article class="feature-group"><p class="eyebrow">После запуска</p><h3>Следующий уровень</h3><ul><li>подарочные сертификаты</li><li>абонементы</li><li>перенос и&nbsp;отмена бронирования</li><li>промокоды</li><li>закрытые и&nbsp;корпоративные события</li><li>дни рождения</li><li>уведомления об&nbsp;освободившемся месте</li><li>подбор занятия</li><li>личный кабинет и&nbsp;история посещений</li></ul></article>
+          <article class="feature-group"><p class="eyebrow">Контент</p><h3>Поводы возвращаться</h3><ul><li>Kitten of the Week</li><li>Teacher Notes и&nbsp;Session Diary</li><li>истории конкретных котят</li><li>отчёты о&nbsp;прошедших занятиях</li><li>фотографии до&nbsp;и&nbsp;после занятия</li><li>интервью с&nbsp;преподавателями</li><li>материалы о&nbsp;благополучии животных</li><li>объяснение пользы социализации</li><li>прозрачная статистика занятий</li></ul></article>
+        </div>
+        <article class="sell-idea">
+          <div class="sell-quote">“You practised with Luna, Milo and Sisu.”</div>
+          <div class="sell-copy"><p class="eyebrow">Идея, которая может хорошо продавать</p><h3>Цифровая карточка после занятия</h3><p>Гость получает красивое персональное воспоминание, которое хочется сохранить или&nbsp;опубликовать.</p><ul><li>дата занятия</li><li>преподаватель</li><li>котята сессии</li><li>общая фотография</li><li>ссылка на&nbsp;отзыв</li><li>следующее занятие</li></ul></div>
+        </article>
+        <article class="roadmap">
+          <div class="roadmap-head"><h3>Как&nbsp;Next.js усиливает всю экосистему</h3><p>Платформа открывает не&nbsp;абстрактные технические возможности, а&nbsp;понятную последовательность продуктов. Каждый следующий этап использует уже созданный фундамент.</p></div>
+          <div class="roadmap-list"><div class="roadmap-item">Сайт и&nbsp;оплата занятий</div><div class="roadmap-item">Расписание, лист ожидания и&nbsp;сертификаты</div><div class="roadmap-item">Личный кабинет гостя</div><div class="roadmap-item">Питомник и&nbsp;профили котят</div><div class="roadmap-item">Бронирование котёнка с&nbsp;предоплатой</div><div class="roadmap-item">Магазин керамики и&nbsp;товаров</div><div class="roadmap-item">Единая программа лояльности Cateva</div></div>
+        </article>
       </div>
     </section>
   </main>
@@ -713,9 +840,11 @@
   <footer class="footer">
     <div class="wrap footer-inner">
       <span>Cateva Kitten Yoga · коммерческое предложение</span>
-      <span>Стоимость действительна после уточнения состава материалов и платёжного провайдера</span>
+      <span>Стоимость действительна после уточнения состава материалов и&nbsp;платёжного провайдера</span>
+      <a href="https://murinova-a.ru" target="_blank" rel="noopener">дизайнер Ангелина Муринова</a>
     </div>
   </footer>
+
 
   <script>
     (() => {
@@ -740,7 +869,7 @@
         const items = [{ label: config.name, value: config.base }];
         if (payment.checked) items.push({ label: "Система оплаты", value: config.payment });
         if (seo.checked) items.push({ label: "SEO-настройка", value: config.seo });
-        if (email.checked) items.push({ label: "Доменная почта", value: 3000 });
+        if (email.checked) items.push({ label: "Доменная почта", value: 6000 });
         const sum = items.reduce((acc, item) => acc + item.value, 0);
 
         total.childNodes[0].nodeValue = money(sum);
@@ -754,5 +883,4 @@
       render();
     })();
   </script>
-</body>
-</html>
+</body></html>
