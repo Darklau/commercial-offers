@@ -1,0 +1,498 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Интерактивный расчет разработки Project Bloom по двум вариантам выполнения">
+  <title>Project Bloom — расчет разработки</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #22364a;
+      --muted: #6d7b8e;
+      --paper: #e9eff6;
+      --surface: rgba(255, 255, 255, .72);
+      --line: rgba(78, 108, 148, .20);
+      --blue: #5362ff;
+      --blue-2: #7480ff;
+      --pale: rgba(220, 230, 243, .58);
+      --accent: #5362ff;
+      --good: #5362ff;
+      --radius: 10px;
+      --shadow: 0 12px 32px rgba(41, 87, 120, .10);
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: radial-gradient(circle at 15% -10%, rgba(105, 143, 190, .18), transparent 36%), radial-gradient(circle at 100% 0%, rgba(171, 191, 218, .20), transparent 32%), linear-gradient(180deg, #f4f7fb 0%, var(--paper) 100%);
+      color: var(--ink);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: 15px;
+      line-height: 1.45;
+    }
+
+    button { font: inherit; }
+    .shell { width: min(1120px, calc(100% - 32px)); margin: 0 auto; padding: 26px 0 60px; }
+
+    header {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 18px;
+      align-items: end;
+      margin-bottom: 16px;
+    }
+    .eyebrow { margin: 0 0 6px; color: var(--blue); font-size: .82rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; }
+    h1 { margin: 0; font-size: clamp(1.75rem, 3vw, 2.75rem); line-height: 1.08; letter-spacing: -.035em; }
+    .subtitle { max-width: 760px; margin: 9px 0 0; color: var(--muted); font-size: .96rem; }
+
+
+    .control-panel {
+      display: grid;
+      grid-template-columns: minmax(240px, 1fr) repeat(3, minmax(130px, .48fr));
+      gap: 8px;
+      padding: 10px 12px;
+      background: rgba(255, 255, 255, .68);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      position: sticky;
+      top: 8px;
+      z-index: 5;
+      min-height: 82px;
+      backdrop-filter: blur(18px) saturate(125%);
+      -webkit-backdrop-filter: blur(18px) saturate(125%);
+    }
+    .switch-wrap { display: flex; flex-direction: column; justify-content: center; gap: 5px; }
+    .label { color: var(--muted); font-size: .75rem; font-weight: 750; letter-spacing: .035em; text-transform: uppercase; }
+    .segmented { display: grid; grid-template-columns: 1fr 1fr; gap: 3px; padding: 3px; background: rgba(111, 163, 200, .14); border-radius: 7px; }
+    .segmented button {
+      min-height: 36px;
+      border: 0;
+      border-radius: 5px;
+      padding: 6px 10px;
+      background: transparent;
+      color: var(--muted);
+      cursor: pointer;
+      font-weight: 750;
+    }
+    .segmented button[aria-pressed="true"] { background: var(--blue); color: #fff; box-shadow: 0 4px 12px rgba(83, 98, 255, .28); }
+    .metric { display: flex; flex-direction: column; justify-content: center; padding: 5px 10px; border-left: 1px solid var(--line); }
+    .metric strong { display: block; margin-top: 1px; font-size: clamp(1.02rem, 1.6vw, 1.25rem); line-height: 1.15; }
+    .metric small { display: block; min-height: 2.35em; color: var(--muted); font-size: .76rem; line-height: 1.2; }
+
+    .usable {
+      margin: 14px 0;
+      padding: 14px 16px;
+      border-left: 4px solid var(--accent);
+      background: rgba(222, 233, 246, .62);
+      border-radius: 0 8px 8px 0;
+      border-top: 1px solid rgba(255,255,255,.58);
+      border-right: 1px solid rgba(78,108,148,.14);
+      border-bottom: 1px solid rgba(78,108,148,.14);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.52), 0 8px 24px rgba(51,82,122,.06);
+    }
+    .usable {
+      backdrop-filter: blur(16px) saturate(110%);
+      -webkit-backdrop-filter: blur(16px) saturate(110%);
+    }
+    .usable strong { color: var(--accent); }
+    .usable p { margin: 4px 0 0; }
+
+    .overview { margin: 18px 0 22px; }
+    h2 { margin: 0 0 10px; font-size: 1.3rem; letter-spacing: -.015em; }
+    .stage-strip { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+    .stage-chip { padding: 12px; background: var(--surface); border: 1px solid var(--line); border-radius: 8px; backdrop-filter: blur(14px) saturate(120%); -webkit-backdrop-filter: blur(14px) saturate(120%); }
+    .stage-chip .number { color: var(--blue); font-size: .8rem; font-weight: 800; }
+    .stage-chip h3 { margin: 5px 0 8px; font-size: 1rem; line-height: 1.2; }
+    .stage-chip .stage-total { font-weight: 800; }
+    .stage-chip .stage-term { display: block; color: var(--muted); font-size: .85rem; }
+
+    .stages { display: grid; gap: 14px; }
+    .stage { overflow: hidden; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); box-shadow: 0 9px 26px rgba(41, 87, 120, .07); backdrop-filter: blur(16px) saturate(120%); -webkit-backdrop-filter: blur(16px) saturate(120%); }
+    .stage-head { display: grid; grid-template-columns: 1fr auto; gap: 14px; align-items: start; padding: 16px 18px 13px; border-bottom: 1px solid var(--line); }
+    .stage-head h2 { margin: 0; }
+    .stage-head p { margin: 5px 0 0; color: var(--muted); max-width: 780px; }
+    .stage-price { text-align: right; white-space: nowrap; }
+    .stage-price strong { display: block; font-size: 1.1rem; }
+    .stage-price span { color: var(--muted); font-size: .87rem; }
+
+    .table-scroll { overflow-x: auto; }
+    table { width: 100%; min-width: 920px; table-layout: fixed; border-collapse: collapse; }
+    th, td { padding: 9px 12px; border-bottom: 1px solid var(--line); text-align: left; vertical-align: top; }
+    th { background: var(--blue); color: #fff; font-size: .76rem; letter-spacing: .02em; }
+    tbody tr:nth-child(even) { background: var(--pale); }
+    tbody tr:last-child td { border-bottom: 0; }
+    td.hours, td.cost { text-align: right; white-space: nowrap; font-variant-numeric: tabular-nums; }
+    td.role { color: var(--muted); }
+    .result { overflow-wrap: anywhere; }
+
+    .stage-foot { display: grid; grid-template-columns: 1fr auto; gap: 14px; align-items: center; padding: 11px 16px; background: rgba(237, 246, 252, .72); border-top: 1px solid var(--line); }
+    .stage-foot p { margin: 0; color: var(--muted); }
+    .stage-foot strong { color: var(--ink); }
+
+    .final-total {
+      display: grid;
+      grid-template-columns: minmax(190px, 1fr) repeat(3, minmax(145px, .65fr));
+      gap: 0;
+      align-items: stretch;
+      margin-top: 18px;
+      overflow: hidden;
+      background: linear-gradient(135deg, rgba(73, 88, 246, .98), rgba(91, 108, 255, .95));
+      color: #fff;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+    .final-title, .final-metric { padding: 16px 18px; }
+    .final-title { display: flex; flex-direction: column; justify-content: center; }
+    .final-title .label { color: rgba(255,255,255,.72); }
+    .final-title h2 { margin: 3px 0 0; color: #fff; }
+    .final-metric { border-left: 1px solid rgba(255,255,255,.2); }
+    .final-metric span, .final-metric small { display: block; color: rgba(255,255,255,.72); }
+    .final-metric span { font-size: .75rem; font-weight: 750; letter-spacing: .035em; text-transform: uppercase; }
+    .final-metric strong { display: block; margin: 2px 0 1px; font-size: 1.18rem; line-height: 1.2; }
+    .final-metric small { font-size: .76rem; }
+
+    .control-panel {
+      gap: 5px;
+      min-height: 0;
+      padding: 6px 8px;
+      border-radius: 8px;
+    }
+    .switch-wrap { gap: 3px; }
+    .label { font-size: .7rem; letter-spacing: .03em; }
+    .segmented {
+      gap: 2px;
+      padding: 2px;
+      border-radius: 6px;
+    }
+    .segmented button {
+      min-height: 30px;
+      padding: 4px 8px;
+      font-size: .86rem;
+    }
+    .metric { padding: 3px 8px; }
+    .metric strong {
+      margin-top: 0;
+      font-size: clamp(.96rem, 1.35vw, 1.12rem);
+      line-height: 1.12;
+    }
+    .metric small {
+      min-height: 2.25em;
+      font-size: .7rem;
+      line-height: 1.15;
+    }
+
+    .mobile-bar { display: none; }
+
+    footer { margin-top: 24px; color: var(--muted); font-size: .88rem; }
+    footer p { margin: 5px 0; }
+
+    @media (max-width: 900px) {
+      header { grid-template-columns: 1fr; }
+
+      .control-panel { grid-template-columns: 1fr 1fr 1fr; position: static; }
+      .switch-wrap { grid-column: 1 / -1; }
+      .metric:first-of-type { border-left: 0; }
+      .stage-strip { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 620px) {
+      .shell {
+        width: min(100% - 20px, 1180px);
+        padding-top: 20px;
+        padding-bottom: calc(118px + env(safe-area-inset-bottom));
+      }
+      .control-panel { display: none; }
+      .mobile-bar {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) max-content;
+        gap: 8px;
+        align-items: center;
+        position: fixed;
+        left: 10px;
+        right: 10px;
+        bottom: max(10px, env(safe-area-inset-bottom));
+        z-index: 30;
+        padding: 8px;
+        background: rgba(255,255,255,.76);
+        border: 1px solid var(--line);
+        border-radius: 7px;
+        box-shadow: 0 12px 34px rgba(41,87,120,.20);
+        backdrop-filter: blur(16px) saturate(125%);
+        -webkit-backdrop-filter: blur(16px) saturate(125%);
+      }
+      .mobile-switch {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 3px;
+        min-width: 0;
+        padding: 3px;
+        background: rgba(111,163,200,.14);
+        border-radius: 7px;
+      }
+      .mobile-switch button {
+        min-width: 0;
+        min-height: 38px;
+        padding: 5px 7px;
+        border: 0;
+        border-radius: 5px;
+        background: transparent;
+        color: var(--muted);
+        font-size: .8rem;
+        line-height: 1.1;
+        font-weight: 750;
+        cursor: pointer;
+      }
+      .mobile-switch button[aria-pressed="true"] {
+        background: linear-gradient(135deg, rgba(73, 88, 246, .98), rgba(91, 108, 255, .95));
+        color: #fff;
+        box-shadow: 0 4px 12px rgba(83,98,255,.28);
+      }
+      .mobile-total {
+        min-width: 112px;
+        padding: 2px 6px 2px 4px;
+        text-align: right;
+      }
+      .mobile-total span {
+        display: block;
+        color: var(--muted);
+        font-size: .7rem;
+        font-weight: 750;
+        letter-spacing: .025em;
+        text-transform: uppercase;
+      }
+      .mobile-total strong {
+        display: block;
+        margin-top: 1px;
+        color: var(--ink);
+        font-size: 1.02rem;
+        line-height: 1.15;
+        white-space: nowrap;
+      }
+      .stage-strip { grid-template-columns: 1fr; }
+      .stage-head, .stage-foot { grid-template-columns: 1fr; }
+      .stage-price { text-align: left; }
+      .final-total { grid-template-columns: 1fr; }
+      .final-metric { border-left: 0; border-top: 1px solid rgba(255,255,255,.2); }
+    }
+    @media print {
+      body { background: #fff; }
+      .shell { width: 100%; padding: 0; }
+      .control-panel { position: static; box-shadow: none; }
+      .stage { break-inside: avoid; box-shadow: none; }
+      .segmented { display: none; }
+      .mobile-bar { display: none !important; }
+      .switch-wrap::after { content: "Выбранный вариант отражен в расчете ниже"; color: var(--muted); }
+    }
+  </style>
+</head>
+<body>
+  <main class="shell">
+    <header>
+      <div>
+        <p class="eyebrow">Коммерческое предложение</p>
+        <h1>Project Bloom</h1>
+        <p class="subtitle">Поэтапный запуск агрегатора обращений, заказов и операционного учета для цветочного бизнеса.</p>
+      </div>
+
+    </header>
+
+    <section class="control-panel" aria-label="Выбор варианта выполнения">
+      <div class="switch-wrap">
+        <span class="label">Кто выполняет проект</span>
+        <div class="segmented" role="group" aria-label="Вариант выполнения">
+          <button id="companyBtn" type="button" aria-pressed="true">Компания</button>
+          <button id="smallBtn" type="button" aria-pressed="false">Небольшая команда</button>
+        </div>
+      </div>
+      <div class="metric"><span class="label">Общий бюджет</span><strong id="totalCost">1 200 000 ₽</strong><small>400 часов</small></div>
+      <div class="metric"><span class="label">Ориентир по сроку</span><strong id="totalTerm">11–15 недель</strong><small id="capacity">до 40 часов в неделю</small></div>
+      <div class="metric"><span class="label">Расчетная ставка</span><strong id="rate">3 000 ₽/ч</strong><small id="team">Работа через компанию</small></div>
+    </section>
+
+    <section class="mobile-bar" aria-label="Мобильный выбор варианта и итоговая стоимость">
+      <div class="mobile-switch" role="group" aria-label="Вариант выполнения">
+        <button id="mobileCompanyBtn" type="button" aria-pressed="true">Компания</button>
+        <button id="mobileSmallBtn" type="button" aria-pressed="false">Своя команда</button>
+      </div>
+      <div class="mobile-total">
+        <span>Общий бюджет</span>
+        <strong id="mobileTotalCost">1 200 000 ₽</strong>
+      </div>
+    </section>
+
+    <aside class="usable">
+      <strong>После этапа 1 Bloom уже можно использовать в ежедневной работе.</strong>
+      <p>Менеджер получает Telegram, WhatsApp Business, Avito, MAX и заявки сайта в одном окне, ведет клиента и передает заказ до доставки. В первый рабочий релиз еще не входят автоматическое подтверждение оплаты, склад, рецепты, списание и расширенные отчеты.</p>
+    </aside>
+
+    <section class="overview" aria-labelledby="overviewTitle">
+      <h2 id="overviewTitle">Стоимость и срок по этапам</h2>
+      <div class="stage-strip" id="stageStrip"></div>
+    </section>
+
+    <section class="stages" id="stages" aria-label="Подробный состав работ"></section>
+
+    <section class="final-total" aria-label="Итоговый расчет проекта">
+      <div class="final-title">
+        <span class="label">Итого по проекту</span>
+        <h2>Общий расчет</h2>
+      </div>
+      <div class="final-metric">
+        <span>Общий бюджет</span>
+        <strong id="bottomTotalCost">1 200 000 ₽</strong>
+        <small>400 часов</small>
+      </div>
+      <div class="final-metric">
+        <span>Ориентир по сроку</span>
+        <strong id="bottomTotalTerm">11–15 недель</strong>
+        <small id="bottomCapacity">до 40 часов в неделю</small>
+      </div>
+      <div class="final-metric">
+        <span>Ставка</span>
+        <strong id="bottomRate">3 000 ₽/ч</strong>
+        <small id="bottomTeam">Работа через компанию</small>
+      </div>
+    </section>
+
+    <footer>
+      <p>Объем работ одинаков в обоих вариантах. Меняются только ставка и доступная недельная загрузка.</p>
+      <p>Сроки предполагают последовательную приемку этапов. Ожидание доступов и модерации внешних площадок в часы разработки не входит.</p>
+    </footer>
+  </main>
+
+  <script>
+    const scenarios = {
+      company: { label: 'Компания', rate: 3000, capacity: 40, totalTerm: '11–15 недель', note: 'Работа через компанию' },
+      small: { label: 'Небольшая команда', rate: 2700, capacity: 20, totalTerm: '22–30 недель', note: 'Разработчик, дизайнер и тестировщик' }
+    };
+
+    const stages = [
+      {
+        id: 0, title: 'Проектирование и проверка каналов', hours: 32,
+        result: 'Прототип агрегатора и зафиксированный объем первого рабочего релиза',
+        terms: { company: '1 неделя', small: '2 недели' },
+        tasks: [
+          ['Процесс и приемка', 'Согласован путь от обращения клиента до заказа, роли и исключения', 'Разработчик', 8],
+          ['Проверка подключения пяти каналов', 'Подтвержден прием и отправка сообщений; получены тестовые доступы и зафиксированы ограничения', 'Разработчик', 10],
+          ['Прототип', 'Кликабельные экраны единого окна, диалога, клиента и заказа', 'Дизайнер', 6],
+          ['Структура системы', 'Спроектирована единая структура каналов, диалогов, клиентов и заказов', 'Разработчик', 4],
+          ['Список задач', 'Зафиксированы задачи, зависимости и критерии первого рабочего релиза', 'Разработчик и тестировщик', 2],
+          ['Демонстрация', 'Команда проверяет сценарий и фиксирует принятые решения', 'Команда', 2]
+        ]
+      },
+      {
+        id: 1, title: 'Агрегация каналов и операционный заказ', hours: 176,
+        result: 'Единое окно пяти каналов и проведение заказа до доставки',
+        terms: { company: '4–6 недель', small: '8–12 недель' },
+        tasks: [
+          ['Основа приложения', 'Рабочая версия системы с компаниями, магазинами, пользователями и правами доступа', 'Разработчик', 14],
+          ['Общая обработка сообщений', 'Все каналы передают сообщения в единую очередь и сохраняют историю', 'Разработчик', 18],
+          ['Единое окно менеджера', 'Очередь диалогов, фильтры, история, ответ и назначение', 'Разработчик', 22],
+          ['Telegram', 'Входящие и исходящие сообщения, вложения и автоматическое получение событий', 'Разработчик', 6],
+          ['WhatsApp Business', 'Получение сообщений, ответы и согласованные шаблоны', 'Разработчик', 12],
+          ['Avito', 'Чаты, объявления, ответы, изображения и отметка о прочтении', 'Разработчик', 8],
+          ['MAX', 'Бизнес-бот, сообщения, вложения и данные клиента', 'Разработчик', 8],
+          ['Сайт или Tilda', 'Заявка с источником и данными клиента', 'Разработчик', 6],
+          ['Клиенты и дубли', 'Карточка клиента, получатель, история обращений и объединение дублей', 'Разработчик', 10],
+          ['Заказ и статусы', 'Карточка заказа, ответственные, сроки, отмена и история', 'Разработчик', 18],
+          ['Флорист и курьер', 'Очередь сборки, фото готовности и завершение доставки', 'Разработчик', 16],
+          ['Уведомления и история изменений', 'Напоминания сотрудникам и понятная история действий с заказом', 'Разработчик', 6],
+          ['Финальное тестирование и пилот', 'Сквозная проверка, инструкции и запуск на одной точке', 'Тестировщик', 24],
+          ['Управление этапом', 'Планирование, демонстрации и приемка', 'Разработчик', 8]
+        ]
+      },
+      {
+        id: 2, title: 'Склад и рецепты', hours: 104,
+        result: 'Заказ и оперативный склад работают в одной системе',
+        terms: { company: '3–4 недели', small: '6–8 недель' },
+        tasks: [
+          ['Каталог и рецепты', 'Товары, единицы, состав и версии рецептов', 'Разработчик', 16],
+          ['Остатки и движения', 'Баланс по магазинам, приход, корректировки и история', 'Разработчик', 18],
+          ['Потребность и резерв', 'Расчет компонентов под подтвержденные заказы', 'Разработчик', 14],
+          ['Дефицит и замены', 'Нехватка и обязательная причина замены', 'Разработчик', 10],
+          ['Фактическое списание', 'Однократное списание фактического состава после сборки', 'Разработчик', 12],
+          ['Импорт данных', 'Перенос товаров, рецептов и остатков из таблиц', 'Разработчик', 8],
+          ['Отчеты', 'Минимальные остатки, движения, корректировки и расхождения', 'Разработчик', 8],
+          ['Тестирование', 'Проверка дефицита, замен, повторного списания и прав доступа', 'Тестировщик', 12],
+          ['Управление этапом', 'Планирование, демонстрации и приемка', 'Разработчик', 6]
+        ]
+      },
+      {
+        id: 3, title: 'Онлайн оплата, отчеты и запуск', hours: 88,
+        result: 'Клиент оплачивает заказ, сотрудники доводят его до доставки, владелец получает отчеты',
+        terms: { company: '3–4 недели', small: '6–8 недель' },
+        tasks: [
+          ['Подключение онлайн оплаты', 'Менеджер отправляет ссылку, Bloom самостоятельно отмечает успешную оплату', 'Разработчик', 12],
+          ['Отчеты для владельца', 'Выручка, количество заказов, средний чек, источники, товары и списания', 'Разработчик', 18],
+          ['Отчеты по магазинам', 'Показатели всей сети и каждой точки отдельно', 'Разработчик', 8],
+          ['Защита от сбоев и повторов', 'Повторное сообщение не создает второй заказ; временные ошибки обрабатываются повторно', 'Разработчик', 14],
+          ['Контроль работы и резервные копии', 'Сбои видны команде, данные сохраняются, восстановление проверено', 'Разработчик', 8],
+          ['Пробный запуск', 'Реальные заказы проходят через систему, найденные проблемы исправляются', 'Разработчик и тестировщик', 10],
+          ['Проверка всего сценария', 'Путь от сообщения и оплаты до доставки и отчета владельца', 'Тестировщик', 12],
+          ['Согласование и приемка', 'Демонстрация результата, фиксация замечаний и приемка этапа', 'Разработчик', 6]
+        ]
+      }
+    ];
+
+    const money = value => new Intl.NumberFormat('ru-RU').format(value) + ' ₽';
+    let selected = 'company';
+
+    function render() {
+      const scenario = scenarios[selected];
+      document.getElementById('companyBtn').setAttribute('aria-pressed', selected === 'company');
+      document.getElementById('smallBtn').setAttribute('aria-pressed', selected === 'small');
+      document.getElementById('totalCost').textContent = money(400 * scenario.rate);
+      document.getElementById('totalTerm').textContent = scenario.totalTerm;
+      document.getElementById('capacity').textContent = `до ${scenario.capacity} часов в неделю`;
+      document.getElementById('rate').textContent = `${money(scenario.rate)}/ч`;
+      document.getElementById('team').textContent = scenario.note;
+      document.getElementById('bottomTotalCost').textContent = money(400 * scenario.rate);
+      document.getElementById('bottomTotalTerm').textContent = scenario.totalTerm;
+      document.getElementById('bottomCapacity').textContent = 'до ' + scenario.capacity + ' часов в неделю';
+      document.getElementById('bottomRate').textContent = money(scenario.rate) + '/ч';
+      document.getElementById('bottomTeam').textContent = scenario.note;
+      document.getElementById('mobileCompanyBtn').setAttribute('aria-pressed', selected === 'company');
+      document.getElementById('mobileSmallBtn').setAttribute('aria-pressed', selected === 'small');
+      document.getElementById('mobileTotalCost').textContent = money(400 * scenario.rate);
+
+      document.getElementById('stageStrip').innerHTML = stages.map(stage => `
+        <article class="stage-chip">
+          <span class="number">Этап ${stage.id}</span>
+          <h3>${stage.title}</h3>
+          <span class="stage-total">${money(stage.hours * scenario.rate)}</span>
+          <span class="stage-term">${stage.hours} ч · ${stage.terms[selected]}</span>
+        </article>`).join('');
+
+      document.getElementById('stages').innerHTML = stages.map(stage => `
+        <article class="stage">
+          <div class="stage-head">
+            <div><h2>Этап ${stage.id}. ${stage.title}</h2><p>${stage.result}</p></div>
+            <div class="stage-price"><strong>${money(stage.hours * scenario.rate)}</strong><span>${stage.hours} ч · ${stage.terms[selected]}</span></div>
+          </div>
+          <div class="table-scroll">
+            <table>
+              <colgroup>
+                <col style="width:22%">
+                <col style="width:40%">
+                <col style="width:16%">
+                <col style="width:8%">
+                <col style="width:14%">
+              </colgroup>
+              <thead><tr><th>Задача</th><th class="result">Проверяемый результат</th><th>Ответственный</th><th>Часы</th><th>Стоимость</th></tr></thead>
+              <tbody>${stage.tasks.map(task => `<tr><td>${task[0]}</td><td class="result">${task[1]}</td><td class="role">${task[2]}</td><td class="hours">${task[3]}</td><td class="cost">${money(task[3] * scenario.rate)}</td></tr>`).join('')}</tbody>
+            </table>
+          </div>
+          <div class="stage-foot"><p><strong>Итог этапа:</strong> ${stage.result}</p><strong>${money(stage.hours * scenario.rate)}</strong></div>
+        </article>`).join('');
+    }
+
+    document.getElementById('companyBtn').addEventListener('click', () => { selected = 'company'; render(); });
+    document.getElementById('smallBtn').addEventListener('click', () => { selected = 'small'; render(); });
+    document.getElementById('mobileCompanyBtn').addEventListener('click', () => { selected = 'company'; render(); });
+    document.getElementById('mobileSmallBtn').addEventListener('click', () => { selected = 'small'; render(); });
+    render();
+  </script>
+</body>
+</html>
