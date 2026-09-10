@@ -440,6 +440,10 @@
     let selected = 'company';
 
     function render() {
+      const tableScrollPositions = Array.from(
+        document.querySelectorAll('.table-scroll'),
+        table => table.scrollLeft
+      );
       const scenario = scenarios[selected];
       document.getElementById('companyBtn').setAttribute('aria-pressed', selected === 'company');
       document.getElementById('smallBtn').setAttribute('aria-pressed', selected === 'small');
@@ -486,6 +490,11 @@
           </div>
           <div class="stage-foot"><p><strong>Итог этапа:</strong> ${stage.result}</p><strong>${money(stage.hours * scenario.rate)}</strong></div>
         </article>`).join('');
+      requestAnimationFrame(() => {
+        document.querySelectorAll('.table-scroll').forEach((table, index) => {
+          table.scrollLeft = tableScrollPositions[index] || 0;
+        });
+      });
     }
 
     document.getElementById('companyBtn').addEventListener('click', () => { selected = 'company'; render(); });
