@@ -1,0 +1,335 @@
+<!doctype html><html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>ЛАПА — дизайн и разработка интернет-магазина</title><style>
+    :root {
+      color-scheme: light;
+      --ink: #22364a;
+      --muted: #6d7b8e;
+      --paper: #e9eff6;
+      --surface: rgba(255, 255, 255, .72);
+      --line: rgba(78, 108, 148, .20);
+      --blue: #5362ff;
+      --blue-2: #7480ff;
+      --pale: rgba(220, 230, 243, .58);
+      --accent: #5362ff;
+      --good: #5362ff;
+      --radius: 10px;
+      --shadow: 0 12px 32px rgba(41, 87, 120, .10);
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: radial-gradient(circle at 15% -10%, rgba(105, 143, 190, .18), transparent 36%), radial-gradient(circle at 100% 0%, rgba(171, 191, 218, .20), transparent 32%), linear-gradient(180deg, #f4f7fb 0%, var(--paper) 100%);
+      color: var(--ink);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: 15px;
+      line-height: 1.45;
+    }
+
+    button { font: inherit; }
+    .shell { width: min(1120px, calc(100% - 32px)); margin: 0 auto; padding: 26px 0 60px; }
+
+    header {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 18px;
+      align-items: end;
+      margin-bottom: 16px;
+    }
+    .eyebrow { margin: 0 0 6px; color: var(--blue); font-size: .82rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; }
+    h1 { margin: 0; font-size: clamp(1.75rem, 3vw, 2.75rem); line-height: 1.08; letter-spacing: -.035em; }
+    .subtitle { max-width: 760px; margin: 9px 0 0; color: var(--muted); font-size: .96rem; }
+
+
+    .control-panel {
+      display: grid;
+      grid-template-columns: minmax(240px, 1fr) repeat(3, minmax(130px, .48fr));
+      gap: 8px;
+      padding: 10px 12px;
+      background: rgba(255, 255, 255, .68);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      position: sticky;
+      top: 8px;
+      z-index: 5;
+      min-height: 82px;
+      backdrop-filter: blur(18px) saturate(125%);
+      -webkit-backdrop-filter: blur(18px) saturate(125%);
+    }
+    .switch-wrap { display: flex; flex-direction: column; justify-content: center; gap: 5px; }
+    .label { color: var(--muted); font-size: .75rem; font-weight: 750; letter-spacing: .035em; text-transform: uppercase; }
+    .segmented { display: grid; grid-template-columns: 1fr 1fr; gap: 3px; padding: 3px; background: rgba(111, 163, 200, .14); border-radius: 7px; }
+    .segmented button {
+      min-height: 36px;
+      border: 0;
+      border-radius: 5px;
+      padding: 6px 10px;
+      background: transparent;
+      color: var(--muted);
+      cursor: pointer;
+      font-weight: 750;
+    }
+    .segmented button[aria-pressed="true"] { background: var(--blue); color: #fff; box-shadow: 0 4px 12px rgba(83, 98, 255, .28); }
+    .metric { display: flex; flex-direction: column; justify-content: center; padding: 5px 10px; border-left: 1px solid var(--line); }
+    .metric strong { display: block; margin-top: 1px; font-size: clamp(1.02rem, 1.6vw, 1.25rem); line-height: 1.15; }
+    .metric small { display: block; min-height: 2.35em; color: var(--muted); font-size: .76rem; line-height: 1.2; }
+
+    .usable {
+      margin: 14px 0;
+      padding: 14px 16px;
+      border-left: 4px solid var(--accent);
+      background: rgba(222, 233, 246, .62);
+      border-radius: 0 8px 8px 0;
+      border-top: 1px solid rgba(255,255,255,.58);
+      border-right: 1px solid rgba(78,108,148,.14);
+      border-bottom: 1px solid rgba(78,108,148,.14);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.52), 0 8px 24px rgba(51,82,122,.06);
+    }
+    .usable {
+      backdrop-filter: blur(16px) saturate(110%);
+      -webkit-backdrop-filter: blur(16px) saturate(110%);
+    }
+    .usable strong { color: var(--accent); }
+    .usable p { margin: 4px 0 0; }
+
+    .overview { margin: 18px 0 22px; }
+    h2 { margin: 0 0 10px; font-size: 1.3rem; letter-spacing: -.015em; }
+    .stage-strip { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+    .stage-chip { padding: 12px; background: var(--surface); border: 1px solid var(--line); border-radius: 8px; backdrop-filter: blur(14px) saturate(120%); -webkit-backdrop-filter: blur(14px) saturate(120%); }
+    .stage-chip .number { color: var(--blue); font-size: .8rem; font-weight: 800; }
+    .stage-chip h3 { margin: 5px 0 8px; font-size: 1rem; line-height: 1.2; }
+    .stage-chip .stage-total { font-weight: 800; }
+    .stage-chip .stage-term { display: block; color: var(--muted); font-size: .85rem; }
+
+    .stages { display: grid; gap: 14px; }
+    .stage { overflow: hidden; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); box-shadow: 0 9px 26px rgba(41, 87, 120, .07); backdrop-filter: blur(16px) saturate(120%); -webkit-backdrop-filter: blur(16px) saturate(120%); }
+    .stage-head { display: grid; grid-template-columns: 1fr auto; gap: 14px; align-items: start; padding: 16px 18px 13px; border-bottom: 1px solid var(--line); }
+    .stage-head h2 { margin: 0; }
+    .stage-head p { margin: 5px 0 0; color: var(--muted); max-width: 780px; }
+    .stage-price { text-align: right; white-space: nowrap; }
+    .stage-price strong { display: block; font-size: 1.1rem; }
+    .stage-price span { color: var(--muted); font-size: .87rem; }
+
+    .table-scroll { overflow-x: auto; }
+    table { width: 100%; min-width: 920px; table-layout: fixed; border-collapse: collapse; }
+    th, td { padding: 9px 12px; border-bottom: 1px solid var(--line); text-align: left; vertical-align: top; }
+    th { background: var(--blue); color: #fff; font-size: .76rem; letter-spacing: .02em; }
+    tbody tr:nth-child(even) { background: var(--pale); }
+    tbody tr:last-child td { border-bottom: 0; }
+    td.hours, td.cost { text-align: right; white-space: nowrap; font-variant-numeric: tabular-nums; }
+    td.role { color: var(--muted); }
+    .result { overflow-wrap: anywhere; }
+
+    .stage-foot { display: grid; grid-template-columns: 1fr auto; gap: 14px; align-items: center; padding: 11px 16px; background: rgba(237, 246, 252, .72); border-top: 1px solid var(--line); }
+    .stage-foot p { margin: 0; color: var(--muted); }
+    .stage-foot strong { color: var(--ink); }
+
+    .final-total {
+      display: grid;
+      grid-template-columns: minmax(190px, 1fr) repeat(3, minmax(145px, .65fr));
+      gap: 0;
+      align-items: stretch;
+      margin-top: 18px;
+      overflow: hidden;
+      background: linear-gradient(135deg, rgba(73, 88, 246, .98), rgba(91, 108, 255, .95));
+      color: #fff;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+    .final-title, .final-metric { padding: 16px 18px; }
+    .final-title { display: flex; flex-direction: column; justify-content: center; }
+    .final-title .label { color: rgba(255,255,255,.72); }
+    .final-title h2 { margin: 3px 0 0; color: #fff; }
+    .final-metric { border-left: 1px solid rgba(255,255,255,.2); }
+    .final-metric span, .final-metric small { display: block; color: rgba(255,255,255,.72); }
+    .final-metric span { font-size: .75rem; font-weight: 750; letter-spacing: .035em; text-transform: uppercase; }
+    .final-metric strong { display: block; margin: 2px 0 1px; font-size: 1.18rem; line-height: 1.2; }
+    .final-metric small { font-size: .76rem; }
+
+    .control-panel {
+      gap: 5px;
+      min-height: 0;
+      padding: 6px 8px;
+      border-radius: 8px;
+    }
+    .switch-wrap { gap: 3px; }
+    .label { font-size: .7rem; letter-spacing: .03em; }
+    .segmented {
+      gap: 2px;
+      padding: 2px;
+      border-radius: 6px;
+    }
+    .segmented button {
+      min-height: 30px;
+      padding: 4px 8px;
+      font-size: .86rem;
+    }
+    .metric { padding: 3px 8px; }
+    .metric strong {
+      margin-top: 0;
+      font-size: clamp(.96rem, 1.35vw, 1.12rem);
+      line-height: 1.12;
+    }
+    .metric small {
+      min-height: 2.25em;
+      font-size: .7rem;
+      line-height: 1.15;
+    }
+
+    .mobile-bar { display: none; }
+
+    footer { margin-top: 24px; color: var(--muted); font-size: .88rem; }
+    footer p { margin: 5px 0; }
+
+    @media (max-width: 900px) {
+      header { grid-template-columns: 1fr; }
+
+      .control-panel { grid-template-columns: 1fr 1fr 1fr; position: static; }
+      .switch-wrap { grid-column: 1 / -1; }
+      .metric:first-of-type { border-left: 0; }
+      .stage-strip { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 620px) {
+      .shell {
+        width: min(100% - 20px, 1180px);
+        padding-top: 20px;
+        padding-bottom: calc(118px + env(safe-area-inset-bottom));
+      }
+      .control-panel { display: none; }
+      .mobile-bar {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) max-content;
+        gap: 8px;
+        align-items: center;
+        position: fixed;
+        left: 10px;
+        right: 10px;
+        bottom: max(10px, env(safe-area-inset-bottom));
+        z-index: 30;
+        padding: 8px;
+        background: rgba(255,255,255,.76);
+        border: 1px solid var(--line);
+        border-radius: 7px;
+        box-shadow: 0 12px 34px rgba(41,87,120,.20);
+        backdrop-filter: blur(16px) saturate(125%);
+        -webkit-backdrop-filter: blur(16px) saturate(125%);
+      }
+      .mobile-switch {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 3px;
+        min-width: 0;
+        padding: 3px;
+        background: rgba(111,163,200,.14);
+        border-radius: 7px;
+      }
+      .mobile-switch button {
+        min-width: 0;
+        min-height: 38px;
+        padding: 5px 7px;
+        border: 0;
+        border-radius: 5px;
+        background: transparent;
+        color: var(--muted);
+        font-size: .8rem;
+        line-height: 1.1;
+        font-weight: 750;
+        cursor: pointer;
+      }
+      .mobile-switch button[aria-pressed="true"] {
+        background: linear-gradient(135deg, rgba(73, 88, 246, .98), rgba(91, 108, 255, .95));
+        color: #fff;
+        box-shadow: 0 4px 12px rgba(83,98,255,.28);
+      }
+      .mobile-total {
+        min-width: 112px;
+        padding: 2px 6px 2px 4px;
+        text-align: right;
+      }
+      .mobile-total span {
+        display: block;
+        color: var(--muted);
+        font-size: .7rem;
+        font-weight: 750;
+        letter-spacing: .025em;
+        text-transform: uppercase;
+      }
+      .mobile-total strong {
+        display: block;
+        margin-top: 1px;
+        color: var(--ink);
+        font-size: 1.02rem;
+        line-height: 1.15;
+        white-space: nowrap;
+      }
+      .stage-strip { grid-template-columns: 1fr; }
+      .stage-head, .stage-foot { grid-template-columns: 1fr; }
+      .stage-price { text-align: left; }
+      .final-total { grid-template-columns: 1fr; }
+      .final-metric { border-left: 0; border-top: 1px solid rgba(255,255,255,.2); }
+    }
+    @media print {
+      body { background: #fff; }
+      .shell { width: 100%; padding: 0; }
+      .control-panel { position: static; box-shadow: none; }
+      .stage { break-inside: avoid; box-shadow: none; }
+      .segmented { display: none; }
+      .mobile-bar { display: none !important; }
+      .switch-wrap::after { content: "Выбранный вариант отражен в расчете ниже"; color: var(--muted); }
+    }
+  
+.control-panel{grid-template-columns:minmax(340px,1.8fr) 1fr .8fr; padding:12px;gap:12px}
+.segmented{grid-template-columns:repeat(3,1fr)}.segmented button{min-height:42px}.metric strong{font-size:1.3rem}.metric small{min-height:0;margin-top:4px}.stage-strip{grid-template-columns:repeat(3,1fr)}
+.stage-head .eyebrow{color:var(--blue);font-size:.72rem;margin:0 0 5px}.stage-head h2{font-size:1.2rem}table{min-width:760px}th.hours,th.cost{text-align:right}
+.stage-foot .included{font-weight:650;color:var(--blue)}.stage[data-included="false"] .included{color:var(--muted)}
+.scope{margin-top:22px;padding:20px;background:var(--surface);border:1px solid var(--line);border-radius:10px}.scope p{margin:9px 0}.scope p:last-child{margin-bottom:0}.scope h3{margin:18px 0 8px;font-size:1rem}
+.final-total{grid-template-columns:1.3fr 1fr 1fr}.print-button{padding:10px 16px;color:var(--blue);background:var(--surface);border:1px solid var(--line);border-radius:8px;cursor:pointer}.print-button:hover{background:white}button:focus-visible{outline:3px solid var(--blue);outline-offset:3px}.stage-chip h3{margin-top:0}.stage-chip p{color:var(--muted);font-size:.87rem;margin-bottom:0}
+@media(max-width:900px){.control-panel{grid-template-columns:1fr 1fr}.switch-wrap{grid-column:1/-1}.metric{border-left:0}.stage-strip{grid-template-columns:1fr}}
+@media(max-width:620px){.shell{padding-bottom:28px}.control-panel{display:grid;position:static;gap:10px}.segmented button{padding:8px 4px;font-size:.78rem}.stage-head,.stage-foot{gap:8px}.final-total{grid-template-columns:1fr}.scope{padding:16px}.metric strong{font-size:1.18rem}}
+@media print{@page{size:A4;margin:12mm}body{font-size:10px;background:white;color:#22364a;print-color-adjust:exact;-webkit-print-color-adjust:exact}.shell{width:100%;padding:0}.print-button,.control-panel,.overview{display:none!important}.stage{break-inside:auto;backdrop-filter:none}.stage-head{break-after:avoid;padding:10px 12px}.stage-head h2{font-size:14px}table{min-width:0;font-size:9px}th,td{padding:6px}tr{break-inside:avoid}thead{display:table-header-group}.stage-foot{padding:7px 12px}.scope{break-inside:avoid}.stage-strip{grid-template-columns:repeat(3,1fr)}.final-total{grid-template-columns:1.3fr 1fr 1fr;break-inside:avoid}.final-metric{border-top:0;border-left:1px solid #ffffff44}.usable{backdrop-filter:none}.stages{gap:12px}h1{font-size:28px}}
+
+a{color:#4352df;text-underline-offset:3px}.stage-chip .eyebrow{font-size:.68rem;margin:0 0 9px}.stage-total{font-size:1.35rem}.comparison td:first-child{font-weight:650}.scope ul{padding-left:20px}.scope li{margin:8px 0}.scope details{margin-top:16px}.scope summary{cursor:pointer;color:var(--blue);font-weight:650}.stage[data-included="false"]{background:rgba(255,255,255,.45)}
+
+a{color:#4352df;text-underline-offset:3px}.stage-chip .eyebrow{font-size:.68rem;margin:0 0 9px}.stage-total{font-size:1.35rem}.comparison td:first-child{font-weight:650}.scope ul{padding-left:20px}.scope li{margin:8px 0}.scope details{margin-top:16px}.scope summary{cursor:pointer;color:var(--blue);font-weight:650}.stage[data-included="false"]{background:rgba(255,255,255,.45)}
+
+[hidden]{display:none!important}.core-metrics{grid-template-columns:1.2fr 1fr 1fr}.core-metrics .metric:first-child{border-left:0}.addons{margin-top:28px}.addons-intro{color:var(--muted);margin:0 0 14px}.addon-tabs{margin-bottom:14px;grid-template-columns:repeat(3,1fr)}.addon-tabs button{min-height:60px;line-height:1.25}.addon-tabs small{display:block;font-weight:500;margin-top:4px}.addon-tabs button[aria-selected="true"]{background:var(--blue);color:white;box-shadow:0 4px 12px #5362ff44}.addon-panel{outline-offset:4px}.addon-panel .stages{margin-top:12px}.addon-caption{margin:0 0 12px;color:var(--muted)}.empty-addon{padding:20px;background:var(--surface);border:1px solid var(--line);border-radius:10px}.empty-addon p{margin:0}.empty-addon p+p{margin-top:6px;color:var(--muted)}.core-total{margin-top:14px;padding:16px 18px;display:flex;justify-content:space-between;gap:16px;background:var(--surface);border:1px solid var(--line);border-radius:10px}.core-total strong{font-size:1.15rem}.core-total span{color:var(--muted)}.final-total{grid-template-columns:1fr 1fr 1fr}.addon-panel h2{font-size:1.2rem}.section-title{margin:24px 0 12px}.stage-chip{box-shadow:none}
+@media(max-width:620px){.core-metrics{grid-template-columns:1fr 1fr}.core-metrics .metric:first-child{grid-column:1/-1}.addon-tabs{grid-template-columns:1fr}.addon-tabs button{min-height:48px}.core-total{flex-direction:column;gap:5px}.final-total{grid-template-columns:1fr}}
+@media print{.addon-tabs{display:none}.addons{break-before:page}.addon-panel{display:block}.addon-panel[hidden]{display:none!important}.core-total{break-inside:avoid}.final-total{grid-template-columns:1fr 1fr 1fr}}
+
+[hidden]{display:none!important}.core-metrics{grid-template-columns:1.2fr 1fr 1fr}.core-metrics .metric:first-child{border-left:0}.addons{margin-top:28px}.addons-intro{color:var(--muted);margin:0 0 14px}.addon-tabs{margin-bottom:14px;grid-template-columns:repeat(3,1fr)}.addon-tabs button{min-height:60px;line-height:1.25}.addon-tabs small{display:block;font-weight:500;margin-top:4px}.addon-tabs button[aria-selected="true"]{background:var(--blue);color:white;box-shadow:0 4px 12px #5362ff44}.addon-panel{outline-offset:4px}.addon-panel .stages{margin-top:12px}.addon-caption{margin:0 0 12px;color:var(--muted)}.empty-addon{padding:20px;background:var(--surface);border:1px solid var(--line);border-radius:10px}.empty-addon p{margin:0}.empty-addon p+p{margin-top:6px;color:var(--muted)}.core-total{margin-top:14px;padding:16px 18px;display:flex;justify-content:space-between;gap:16px;background:var(--surface);border:1px solid var(--line);border-radius:10px}.core-total strong{font-size:1.15rem}.core-total span{color:var(--muted)}.final-total{grid-template-columns:1fr 1fr 1fr}.addon-panel h2{font-size:1.2rem}.section-title{margin:24px 0 12px}.stage-chip{box-shadow:none}
+@media(max-width:620px){.core-metrics{grid-template-columns:1fr 1fr}.core-metrics .metric:first-child{grid-column:1/-1}.addon-tabs{grid-template-columns:1fr}.addon-tabs button{min-height:48px}.core-total{flex-direction:column;gap:5px}.final-total{grid-template-columns:1fr}}
+@media print{.addon-tabs{display:none}.addons{break-before:page}.addon-panel{display:block}.addon-panel[hidden]{display:none!important}.core-total{break-inside:avoid}.final-total{grid-template-columns:1fr 1fr 1fr}}
+
+[hidden]{display:none!important}.core-metrics{grid-template-columns:1.2fr 1fr 1fr}.core-metrics .metric:first-child{border-left:0}.addons{margin-top:28px}.addons-intro{color:var(--muted);margin:0 0 14px}.addon-tabs{margin-bottom:14px;grid-template-columns:repeat(3,1fr)}.addon-tabs button{min-height:60px;line-height:1.25}.addon-tabs small{display:block;font-weight:500;margin-top:4px}.addon-tabs button[aria-selected="true"]{background:var(--blue);color:white;box-shadow:0 4px 12px #5362ff44}.addon-panel{outline-offset:4px}.addon-panel .stages{margin-top:12px}.addon-caption{margin:0 0 12px;color:var(--muted)}.empty-addon{padding:20px;background:var(--surface);border:1px solid var(--line);border-radius:10px}.empty-addon p{margin:0}.empty-addon p+p{margin-top:6px;color:var(--muted)}.core-total{margin-top:14px;padding:16px 18px;display:flex;justify-content:space-between;gap:16px;background:var(--surface);border:1px solid var(--line);border-radius:10px}.core-total strong{font-size:1.15rem}.core-total span{color:var(--muted)}.final-total{grid-template-columns:1fr 1fr 1fr}.addon-panel h2{font-size:1.2rem}.section-title{margin:24px 0 12px}.stage-chip{box-shadow:none}
+@media(max-width:620px){.core-metrics{grid-template-columns:1fr 1fr}.core-metrics .metric:first-child{grid-column:1/-1}.addon-tabs{grid-template-columns:1fr}.addon-tabs button{min-height:48px}.core-total{flex-direction:column;gap:5px}.final-total{grid-template-columns:1fr}}
+@media print{.addon-tabs{display:none}.addons{break-before:page}.addon-panel{display:block}.addon-panel[hidden]{display:none!important}.core-total{break-inside:avoid}.final-total{grid-template-columns:1fr 1fr 1fr}}
+
+[hidden]{display:none!important}.core-metrics{grid-template-columns:1.2fr 1fr 1fr}.core-metrics .metric:first-child{border-left:0}.addons{margin-top:28px}.addons-intro{color:var(--muted);margin:0 0 14px}.addon-tabs{margin-bottom:14px;grid-template-columns:repeat(3,1fr)}.addon-tabs button{min-height:60px;line-height:1.25}.addon-tabs small{display:block;font-weight:500;margin-top:4px}.addon-tabs button[aria-selected="true"]{background:var(--blue);color:white;box-shadow:0 4px 12px #5362ff44}.addon-panel{outline-offset:4px}.addon-panel .stages{margin-top:12px}.addon-caption{margin:0 0 12px;color:var(--muted)}.empty-addon{padding:20px;background:var(--surface);border:1px solid var(--line);border-radius:10px}.empty-addon p{margin:0}.empty-addon p+p{margin-top:6px;color:var(--muted)}.core-total{margin-top:14px;padding:16px 18px;display:flex;justify-content:space-between;gap:16px;background:var(--surface);border:1px solid var(--line);border-radius:10px}.core-total strong{font-size:1.15rem}.core-total span{color:var(--muted)}.final-total{grid-template-columns:1fr 1fr 1fr}.addon-panel h2{font-size:1.2rem}.section-title{margin:24px 0 12px}.stage-chip{box-shadow:none}
+@media(max-width:620px){.core-metrics{grid-template-columns:1fr 1fr}.core-metrics .metric:first-child{grid-column:1/-1}.addon-tabs{grid-template-columns:1fr}.addon-tabs button{min-height:48px}.core-total{flex-direction:column;gap:5px}.final-total{grid-template-columns:1fr}}
+@media print{.addon-tabs{display:none}.addons{break-before:page}.addon-panel{display:block}.addon-panel[hidden]{display:none!important}.core-total{break-inside:avoid}.final-total{grid-template-columns:1fr 1fr 1fr}}
+</style></head><body><main class="shell"><header><div><p class="eyebrow">Коммерческое предложение · Дизайн и разработка</p><h1>Интернет-магазин ЛАПА</h1><p class="subtitle">Дизайн и разработка магазина с мирами HOME и OUTSIDE, оплатой, доставкой и собственной административной панелью.</p></div><button type="button" class="print-button" onclick="window.print()">Печать / PDF</button></header>
+<section class="control-panel core-metrics" aria-label="Основной магазин"><div class="metric"><span class="label">Основной магазин</span><strong id="base-cost">213 000 ₽</strong><small>20 ч дизайна + 51 ч разработки</small></div><div class="metric"><span class="label">Дизайн + разработка</span><strong style="font-size:1.1rem">60 000 ₽ + 153 000 ₽</strong><small>Основной сайт, магазин и админка</small></div><div class="metric"><span class="label">Дизайн и разработка</span><strong>3 000 ₽/ч</strong></div></section>
+<aside class="usable"><strong>Основной магазин — всё необходимое для запуска продаж</strong><p>В стоимость входят дизайн основных страниц и разработка магазина. Покупатель выбирает товар и оформляет заказ с оплатой и доставкой. Команда ЛАПА управляет товарами, ценами, остатками и заказами через админку. Кабинет покупателя, блог и «Мир собаки» доступны как дополнения ниже.</p></aside>
+<h2 class="section-title">Основная смета</h2><section id="core-stages" class="stages" aria-label="Основная смета"><article class="stage" data-kind="launch"><div class="stage-head"><div><p class="eyebrow">Основная смета · Дизайн · Этап 1</p><h2>Дизайн основного сайта</h2></div><div class="stage-price"><strong>60 000 ₽</strong><span>20 ч</span></div></div><div class="table-scroll"><table><colgroup><col style="width:26%"><col style="width:51%"><col style="width:8%"><col style="width:15%"></colgroup><thead><tr><th scope="col">Работа</th><th scope="col">Что входит</th><th scope="col" class="hours">Часы</th><th scope="col" class="cost">Стоимость</th></tr></thead><tbody><tr><td>Структура сайта</td><td>Карта сайта, прототипы компьютерной и мобильной версий с текстами. Включён 1 круг правок.</td><td class="hours">4</td><td class="cost">12 000 ₽</td></tr><tr><td>Концепция</td><td>Два варианта дизайна первых двух экранов. Включён 1 круг правок.</td><td class="hours">4</td><td class="cost">12 000 ₽</td></tr><tr><td>Дизайн</td><td>Макеты главной, HOME / OUTSIDE, каталога, карточки товара, корзины, оформления заказа и информационных страниц. Включены 1 круг правок на весь макет в десктопе и 1 круг правок на весь макет в мобильной версии.</td><td class="hours">12</td><td class="cost">36 000 ₽</td></tr></tbody></table></div><div class="stage-foot" style="display:block"><p><strong>Дополнительный круг правок — 1 700 ₽.</strong> Оплачивается после использования включённых кругов правок соответствующего этапа.</p><p style="margin-top:10px"><strong>Генерация фотографий не включена в стоимость этого коммерческого предложения и будет тарифицироваться отдельно.</strong></p></div></article><article class="stage" data-kind="launch"><div class="stage-head"><div><p class="eyebrow">Основная смета · Разработка · Этап 2</p><h2>Страницы бренда и общие компоненты</h2></div><div class="stage-price"><strong>30 000 ₽</strong><span>10 ч</span></div></div><div class="table-scroll"><table><colgroup><col style="width:26%"><col style="width:51%"><col style="width:8%"><col style="width:15%"></colgroup><thead><tr><th scope="col">Работа</th><th scope="col">Что входит</th><th scope="col" class="hours">Часы</th><th scope="col" class="cost">Стоимость</th></tr></thead><tbody><tr><td>Главная и выбор HOME / OUTSIDE</td><td>Первый экран, два мира, философия и преимущества по согласованному макету.</td><td class="hours">3</td><td class="cost">9 000 ₽</td></tr><tr><td>HOME — лежанки</td><td>Продающая страница: сон, ортопедическая поддержка, слои, материалы, уход и интерьер.</td><td class="hours">3</td><td class="cost">9 000 ₽</td></tr><tr><td>OUTSIDE — ошейники и поводки</td><td>Принты, сочетания, материалы и сценарии прогулок на общих компонентах.</td><td class="hours">2</td><td class="cost">6 000 ₽</td></tr><tr><td>Общие элементы и информация</td><td>Шапка, подвал, повторяемые информационные блоки, шаблон текстовых страниц; базовый адаптив и простые эффекты входят в этап.</td><td class="hours">2</td><td class="cost">6 000 ₽</td></tr></tbody></table></div></article><article class="stage" data-kind="launch"><div class="stage-head"><div><p class="eyebrow">Основная смета · Разработка · Этап 3</p><h2>Каталог и карточки товаров</h2></div><div class="stage-price"><strong>27 000 ₽</strong><span>9 ч</span></div></div><div class="table-scroll"><table><colgroup><col style="width:26%"><col style="width:51%"><col style="width:8%"><col style="width:15%"></colgroup><thead><tr><th scope="col">Работа</th><th scope="col">Что входит</th><th scope="col" class="hours">Часы</th><th scope="col" class="cost">Стоимость</th></tr></thead><tbody><tr><td>Каталог товаров</td><td>3 категории, варианты размера / цвета / принта, наличие, базовые фильтры и сортировка.</td><td class="hours">2</td><td class="cost">6 000 ₽</td></tr><tr><td>Карточка и выбор товара</td><td>Один переиспользуемый шаблон: галерея, варианты, цена, наличие, состав, уход и добавление в корзину.</td><td class="hours">3</td><td class="cost">9 000 ₽</td></tr><tr><td>Размеры и комплекты</td><td>Подбор по готовой таблице; связанные ошейники и поводки, добавление пары в корзину и блок рекомендаций. Связи задаются вручную.</td><td class="hours">2</td><td class="cost">6 000 ₽</td></tr><tr><td>Наполнение каталога</td><td>12 цветовых / принтовых исполнений и загрузка до 140 изображений, характеристики, размеры и цены. Генерация изображений не включена и тарифицируется отдельно.</td><td class="hours">2</td><td class="cost">6 000 ₽</td></tr></tbody></table></div></article><article class="stage" data-kind="launch"><div class="stage-head"><div><p class="eyebrow">Основная смета · Разработка · Этап 4</p><h2>Серверная часть и админка</h2></div><div class="stage-price"><strong>33 000 ₽</strong><span>11 ч</span></div></div><div class="table-scroll"><table><colgroup><col style="width:26%"><col style="width:51%"><col style="width:8%"><col style="width:15%"></colgroup><thead><tr><th scope="col">Работа</th><th scope="col">Что входит</th><th scope="col" class="hours">Часы</th><th scope="col" class="cost">Стоимость</th></tr></thead><tbody><tr><td>Данные и серверные операции</td><td>Структура товаров, вариантов, остатков, заказов и покупателей; чтение и сохранение данных, проверка входящих значений.</td><td class="hours">3</td><td class="cost">9 000 ₽</td></tr><tr><td>Вход администратора</td><td>Защищённый вход, сессия и ограничение доступа к управлению магазином. Одна роль администратора.</td><td class="hours">2</td><td class="cost">6 000 ₽</td></tr><tr><td>Управление товарами</td><td>Создание и редактирование товаров, загрузка фотографий, категории, размеры, цвета, цены и остатки.</td><td class="hours">3</td><td class="cost">9 000 ₽</td></tr><tr><td>Управление заказами</td><td>Список и карточка заказа, покупатель, состав, оплата, доставка, изменение статуса и отмена с восстановлением остатка.</td><td class="hours">3</td><td class="cost">9 000 ₽</td></tr></tbody></table></div></article><article class="stage" data-kind="launch"><div class="stage-head"><div><p class="eyebrow">Основная смета · Разработка · Этап 5</p><h2>Оформление покупки</h2></div><div class="stage-price"><strong>30 000 ₽</strong><span>10 ч</span></div></div><div class="table-scroll"><table><colgroup><col style="width:26%"><col style="width:51%"><col style="width:8%"><col style="width:15%"></colgroup><thead><tr><th scope="col">Работа</th><th scope="col">Что входит</th><th scope="col" class="hours">Часы</th><th scope="col" class="cost">Стоимость</th></tr></thead><tbody><tr><td>Корзина и оформление</td><td>Количество, суммы, контакты, адрес, проверка полей, сохранение заказа и проверка наличия.</td><td class="hours">3</td><td class="cost">9 000 ₽</td></tr><tr><td>Оплата</td><td>Подключение одной платёжной системы, создание платежа, подтверждение оплаты, обработка ошибок и повторных уведомлений.</td><td class="hours">3</td><td class="cost">9 000 ₽</td></tr><tr><td>Доставка</td><td>Подключение одной службы доставки: расчёт стоимости, выбор адреса / пункта выдачи, передача данных заказа и трек-номер.</td><td class="hours">3</td><td class="cost">9 000 ₽</td></tr><tr><td>Письма о заказе</td><td>Уведомления покупателю и администратору о новом заказе и изменении его статуса.</td><td class="hours">1</td><td class="cost">3 000 ₽</td></tr></tbody></table></div></article><article class="stage" data-kind="launch"><div class="stage-head"><div><p class="eyebrow">Основная смета · Разработка · Этап 6</p><h2>Проверка и запуск</h2></div><div class="stage-price"><strong>33 000 ₽</strong><span>11 ч</span></div></div><div class="table-scroll"><table><colgroup><col style="width:26%"><col style="width:51%"><col style="width:8%"><col style="width:15%"></colgroup><thead><tr><th scope="col">Работа</th><th scope="col">Что входит</th><th scope="col" class="hours">Часы</th><th scope="col" class="cost">Стоимость</th></tr></thead><tbody><tr><td>Адаптив и визуальная проверка</td><td>Проверка страниц и сложных элементов на телефоне и компьютере; исправление обнаруженных несоответствий.</td><td class="hours">2</td><td class="cost">6 000 ₽</td></tr><tr><td>Проверка магазина</td><td>Покупка, ошибка оплаты, повторное подтверждение, доставка, остатки, формы и доступ к административному разделу.</td><td class="hours">4</td><td class="cost">12 000 ₽</td></tr><tr><td>Подготовка к индексации</td><td>Метаданные страниц, sitemap и оптимизация изображений.</td><td class="hours">1</td><td class="cost">3 000 ₽</td></tr><tr><td>Размещение сайта</td><td>Размещение на хостинге, настройка домена и HTTPS, проверка доступности сайта.</td><td class="hours">2</td><td class="cost">6 000 ₽</td></tr><tr><td>Передача проекта</td><td>Настройка резервного копирования, передача кода и доступов, краткая инструкция по товарам и заказам.</td><td class="hours">2</td><td class="cost">6 000 ₽</td></tr></tbody></table></div></article></section>
+<div class="core-total"><strong>Итого за основной магазин</strong><div><strong>213 000 ₽</strong><span> · 71 ч × 3 000 ₽</span></div></div>
+<section class="addons" aria-labelledby="addons-title"><h2 id="addons-title">Дополнения к основному магазину</h2><p class="addons-intro">Ниже — смета разработки дополнительных разделов. Выберите дополнение, чтобы посмотреть его состав и стоимость. Основная смета выше остаётся неизменной.</p>
+<div class="segmented addon-tabs" role="tablist" aria-label="Дополнения"><button type="button" role="tab" id="tab-none" data-mode="none" aria-controls="panel-none" aria-selected="true" tabindex="0">Без дополнений<small>+ 0 ₽</small></button><button type="button" role="tab" id="tab-account" data-mode="account" aria-controls="panel-account" aria-selected="false" tabindex="-1">Кабинет и блог<small>+ 39 000 ₽</small></button><button type="button" role="tab" id="tab-world" data-mode="world" aria-controls="panel-world" aria-selected="false" tabindex="-1">Кабинет и «Мир собаки»<small>+ 69 000 ₽</small></button></div>
+<div class="addon-panel" id="panel-none" role="tabpanel" aria-labelledby="tab-none" tabindex="0"><div class="empty-addon"><p><strong>Основной магазин — 213 000 ₽</strong></p><p>Выбран запуск без дополнительных работ. Вся смета находится выше.</p></div></div>
+<div class="addon-panel" id="panel-account" role="tabpanel" aria-labelledby="tab-account" tabindex="0" hidden><p class="addon-caption">Дополнительно 13 часов / 39 000 ₽. Магазин вместе с дополнением — 252 000 ₽.</p><div class="stages"><article class="stage" data-kind="base"><div class="stage-head"><div><p class="eyebrow">Дополнение · 39 000 ₽</p><h2>Кабинет покупателя и блог</h2></div><div class="stage-price"><strong>39 000 ₽</strong><span>13 ч</span></div></div><div class="table-scroll"><table><colgroup><col style="width:26%"><col style="width:51%"><col style="width:8%"><col style="width:15%"></colgroup><thead><tr><th scope="col">Работа</th><th scope="col">Что входит</th><th scope="col" class="hours">Часы</th><th scope="col" class="cost">Стоимость</th></tr></thead><tbody><tr><td>Кабинет покупателя</td><td>Вход по email, восстановление доступа, профиль, адреса, история и статусы заказов; проверка доступа только к своим данным.</td><td class="hours">6</td><td class="cost">18 000 ₽</td></tr><tr><td>Избранное</td><td>Сохранение товаров в аккаунте, удаление и добавление в корзину; проверка сценария.</td><td class="hours">2</td><td class="cost">6 000 ₽</td></tr><tr><td>Блог — список публикаций</td><td>Верстка страницы блога, карточек статей, постраничной навигации и мобильной версии.</td><td class="hours">2</td><td class="cost">6 000 ₽</td></tr><tr><td>Блог — страница статьи</td><td>Верстка заголовков, текста, изображений, цитат и товарных вставок; адаптация для телефона.</td><td class="hours">2</td><td class="cost">6 000 ₽</td></tr><tr><td>Блог — публикации и связи с товарами</td><td>Подключение данных статей, ссылки между материалами и товарами, размещение и проверка одной статьи.</td><td class="hours">1</td><td class="cost">3 000 ₽</td></tr></tbody></table></div></article></div></div>
+<div class="addon-panel" id="panel-world" role="tabpanel" aria-labelledby="tab-world" tabindex="0" hidden><p class="addon-caption">Дополнительно 23 часа / 69 000 ₽: кабинет и блог — 39 000 ₽, «Мир собаки» — 30 000 ₽. Магазин вместе с дополнениями — 282 000 ₽.</p><div class="stages"><article class="stage" data-kind="base"><div class="stage-head"><div><p class="eyebrow">Дополнение · Кабинет и блог</p><h2>Кабинет покупателя и блог</h2></div><div class="stage-price"><strong>39 000 ₽</strong><span>13 ч</span></div></div><div class="table-scroll"><table><colgroup><col style="width:26%"><col style="width:51%"><col style="width:8%"><col style="width:15%"></colgroup><thead><tr><th scope="col">Работа</th><th scope="col">Что входит</th><th scope="col" class="hours">Часы</th><th scope="col" class="cost">Стоимость</th></tr></thead><tbody><tr><td>Кабинет покупателя</td><td>Вход по email, восстановление доступа, профиль, адреса, история и статусы заказов; проверка доступа только к своим данным.</td><td class="hours">6</td><td class="cost">18 000 ₽</td></tr><tr><td>Избранное</td><td>Сохранение товаров в аккаунте, удаление и добавление в корзину; проверка сценария.</td><td class="hours">2</td><td class="cost">6 000 ₽</td></tr><tr><td>Блог — список публикаций</td><td>Верстка страницы блога, карточек статей, постраничной навигации и мобильной версии.</td><td class="hours">2</td><td class="cost">6 000 ₽</td></tr><tr><td>Блог — страница статьи</td><td>Верстка заголовков, текста, изображений, цитат и товарных вставок; адаптация для телефона.</td><td class="hours">2</td><td class="cost">6 000 ₽</td></tr><tr><td>Блог — публикации и связи с товарами</td><td>Подключение данных статей, ссылки между материалами и товарами, размещение и проверка одной статьи.</td><td class="hours">1</td><td class="cost">3 000 ₽</td></tr></tbody></table></div></article><article class="stage" data-kind="world"><div class="stage-head"><div><p class="eyebrow">Дополнение · Мир собаки</p><h2>Первый этап «Мира собаки»</h2></div><div class="stage-price"><strong>30 000 ₽</strong><span>10 ч</span></div></div><div class="table-scroll"><table><colgroup><col style="width:26%"><col style="width:51%"><col style="width:8%"><col style="width:15%"></colgroup><thead><tr><th scope="col">Работа</th><th scope="col">Что входит</th><th scope="col" class="hours">Часы</th><th scope="col" class="cost">Стоимость</th></tr></thead><tbody><tr><td>Один профиль собаки</td><td>Имя, фото, порода, дата рождения, вес и замеры в кабинете; форма и сохранение данных.</td><td class="hours">4</td><td class="cost">12 000 ₽</td></tr><tr><td>Коллекция HOME / OUTSIDE</td><td>Купленные товары владельца в виде коллекции для одной собаки; ссылки на товары. Без распределения покупок между несколькими собаками.</td><td class="hours">3</td><td class="cost">9 000 ₽</td></tr><tr><td>Размер и дополнения</td><td>Простое сопоставление замеров с согласованной таблицей; рекомендации из вручную заданных связей.</td><td class="hours">1</td><td class="cost">3 000 ₽</td></tr><tr><td>Проверка сценария</td><td>Создание и изменение профиля, доступ к данным, обновление коллекции после покупки и проверка размеров.</td><td class="hours">2</td><td class="cost">6 000 ₽</td></tr></tbody></table></div></article></div></div></section>
+<section class="final-total" aria-label="Итог проекта" aria-live="polite"><div class="final-metric"><span>Основной магазин</span><strong>213 000 ₽</strong><small>71 час</small></div><div class="final-metric"><span>Дополнения</span><strong id="addon-cost">0 ₽</strong><small id="addon-title">Без дополнений</small></div><div class="final-metric"><span>Итого по проекту</span><strong id="total-cost">213 000 ₽</strong><small id="total-hours">71 ч × 3 000 ₽</small></div></section>
+<section class="scope"><h2>Что даёт разработка под ЛАПА</h2><p><b>Сценарии, связанные с собакой.</b> Дополнение «Мир собаки» добавляет профиль питомца, коллекцию купленных вещей и простой подбор размера. Это первый конкретный шаг к персональному магазину из вашего ТЗ.</p><p><b>Управление проектом.</b> Предусмотрена передача исходного кода доработок, доступов и инструкции. Размещение — на аккаунтах заказчика.</p><p><b>Поэтапное развитие.</b> Сначала запускается покупка. Затем можно добавлять несколько собак, клубные привилегии, закрытые коллекции и уведомления; каждый этап получает отдельный согласованный объём.</p>
+</section>
+<section class="scope" id="recurring-costs"><h2>Регулярные расходы</h2><p><strong>Хостинг — ориентировочно 600 ₽ в месяц.</strong> Точная стоимость зависит от выбранного тарифа и нагрузки сайта.</p><p><strong>Доменное имя — регистрация и ежегодное продление.</strong> Стоимость зависит от выбранного имени, доменной зоны и регистратора; уточняется после выбора домена.</p><p>Хостинг и домен оплачиваются отдельно и не включены в стоимость работ по этому коммерческому предложению.</p></section>
+<section class="scope" id="next-stages"><h2>Отдельные следующие этапы</h2><p>Несколько собак, распределение вещей между питомцами, накопительные уровни и привилегии, закрытые офферы и дропы, день рождения, уведомления об остатках, реферальная программа, конфигуратор интерьера, курсор и следы лап, прогресс бесплатной доставки.</p><p>Эти функции можно реализовать следующими этапами; в текущую смету они не включены.</p></section>
+<footer><p>Дизайн и разработка интернет-магазина ЛАПА · 3 000 ₽/час.</p></footer></main>
+<script>
+const baseHours=71,rate=3000;
+const options={none:{hours:0,title:'Без дополнений'},account:{hours:13,title:'Кабинет и блог'},world:{hours:23,title:'Кабинет и «Мир собаки»'}};
+const money=n=>new Intl.NumberFormat('ru-RU').format(n)+' ₽';
+const tabs=Array.from(document.querySelectorAll('[role="tab"]'));
+function select(mode){const option=options[mode];tabs.forEach(tab=>{const active=tab.dataset.mode===mode;tab.setAttribute('aria-selected',String(active));tab.tabIndex=active?0:-1;document.getElementById(tab.getAttribute('aria-controls')).hidden=!active;});document.getElementById('addon-cost').textContent=money(option.hours*rate);document.getElementById('addon-title').textContent=option.title;document.getElementById('total-cost').textContent=money((baseHours+option.hours)*rate);document.getElementById('total-hours').textContent=(baseHours+option.hours)+' ч × 3 000 ₽';}
+tabs.forEach((tab,index)=>{tab.addEventListener('click',()=>select(tab.dataset.mode));tab.addEventListener('keydown',event=>{let next;if(event.key==='ArrowRight')next=(index+1)%tabs.length;else if(event.key==='ArrowLeft')next=(index-1+tabs.length)%tabs.length;else if(event.key==='Home')next=0;else if(event.key==='End')next=tabs.length-1;else return;event.preventDefault();select(tabs[next].dataset.mode);tabs[next].focus();});});
+select('none');
+</script></body></html>
