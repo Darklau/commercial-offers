@@ -1,5 +1,4 @@
-<!doctype html>
-<html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="color-scheme" content="light"><title>Коммерческое предложение — Cateva Kitten Yoga</title><meta name="description" content="Коммерческое предложение на разработку сайта Cateva Kitten Yoga: дизайн и Tilda или дизайн и Next.js."><style>
+<!doctype html>\n<html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="color-scheme" content="light"><title>Коммерческое предложение — Cateva Kitten Yoga</title><meta name="description" content="Коммерческое предложение на разработку сайта Cateva Kitten Yoga: дизайн и Tilda или дизайн и Next.js."><style>
     :root {
       --olive: #292929;
       --olive-dark: #121212;
@@ -190,6 +189,36 @@
     }
     .block h3 { margin-bottom: 10px; font-family: var(--serif); font-size: 25px; font-weight: 400; }
     .block p { margin-bottom: 0; color: rgba(255,255,255,.64); font-size: 14px; }
+    .page-divider {
+      grid-column: 1 / -1;
+      padding: 18px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      border-top: 1px solid rgba(255,255,255,.45);
+      color: rgba(255,255,255,.68);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+    }
+    .page-divider strong { color: var(--cream); font-family: var(--serif); font-size: 24px; font-weight: 400; letter-spacing: 0; text-transform: none; }
+
+    .nursery { background: var(--white); }
+    .nursery-head { display: grid; grid-template-columns: 1.15fr .85fr; gap: 50px; align-items: end; margin-bottom: 54px; }
+    .nursery-head h2 { margin-bottom: 0; }
+    .nursery-head .lead { margin-bottom: 4px; color: var(--muted); }
+    .nursery-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+    .nursery-card { min-height: 310px; padding: 28px; display: flex; flex-direction: column; border: 1px solid var(--line); border-radius: 22px; background: var(--paper); }
+    .nursery-card b { color: var(--muted); font-size: 11px; letter-spacing: .1em; text-transform: uppercase; }
+    .nursery-card h3 { margin: auto 0 14px; font-family: var(--serif); font-size: 32px; font-weight: 400; }
+    .nursery-card p { margin-bottom: 0; color: var(--muted); font-size: 14px; }
+    .nursery-admin { margin-top: 14px; padding: clamp(30px, 5vw, 56px); display: grid; grid-template-columns: .72fr 1.28fr; gap: clamp(30px, 6vw, 80px); border-radius: var(--radius); color: var(--cream); background: var(--olive-dark); }
+    .nursery-admin h3 { margin-bottom: 0; font-family: var(--serif); font-size: clamp(38px, 5vw, 66px); font-weight: 400; }
+    .nursery-admin p { color: rgba(255,255,255,.7); }
+    .admin-list { display: grid; grid-template-columns: 1fr 1fr; gap: 0 22px; padding: 0; margin: 22px 0 0; list-style: none; }
+    .admin-list li { padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,.18); font-size: 13px; }
 
     .trust { background: var(--coral); color: var(--cream); }
     .trust-grid { display: block; }
@@ -410,6 +439,9 @@
       .block:nth-child(3n) { border-right: 1px solid rgba(255,255,255,.24); }
       .block:nth-child(2n) { border-right: 0; }
       .trust-grid { grid-template-columns: 1fr; }
+      .nursery-head, .nursery-admin { grid-template-columns: 1fr; }
+      .nursery-grid { grid-template-columns: 1fr 1fr; }
+      .nursery-card:last-child { grid-column: 1 / -1; }
       .why-next { grid-template-columns: 1fr 1fr; }
       .why-next div:nth-child(2) { border-left: 0; padding-left: 0; }
       .ecosystem-note { grid-template-columns: 1fr; }
@@ -445,6 +477,10 @@
       .block, .block:nth-child(3n) { border-right: 0; }
       .block { min-height: 190px; }
       .block::before { margin-bottom: 34px; }
+      .page-divider { align-items: flex-start; flex-direction: column; }
+      .nursery-grid { grid-template-columns: 1fr; }
+      .nursery-card:last-child { grid-column: auto; }
+      .admin-list { grid-template-columns: 1fr; }
       .trust-copy { padding: 28px 22px; }
       .tariff-tag { position: static; margin-bottom: 20px; }
       .tariff h3 { margin-top: 10px; }
@@ -533,6 +569,7 @@
         <div class="nav-links">
           <a href="#concept">Задача</a>
           <a href="#scope">Состав сайта</a>
+          <a href="#nursery">Питомник</a>
           <a href="#tariffs">Тарифы</a>
           <a href="#estimate">Смета</a>
           <a href="#calculator">Расчёт</a>
@@ -578,11 +615,12 @@
         <div class="scope-head">
           <div>
             <p class="eyebrow">02 · Состав сайта</p>
-            <h2>14 смысловых блоков лендинга</h2>
+            <h2>Две страницы, 17 смысловых блоков и&nbsp;админка</h2>
           </div>
-          <p>Каждый блок проектируется отдельно: до&nbsp;1 часа на&nbsp;дизайн и&nbsp;до&nbsp;1 часа на&nbsp;реализацию. Для&nbsp;трёх сложных Next.js-блоков заложено по&nbsp;2 часа.</p>
+          <p>Основная страница представляет Kitten Yoga, отдельная страница — питомник. Контент питомника можно обновлять через админку без&nbsp;изменения кода.</p>
         </div>
         <div class="blocks">
+          <div class="page-divider"><span>Страница 01</span><strong>Kitten Yoga</strong></div>
           <article class="block"><h3>Шапка и&nbsp;навигация</h3><p>Логотип, разделы, быстрый переход к&nbsp;расписанию и&nbsp;бронированию.</p></article>
           <article class="block"><h3>Первый экран</h3><p>Суть предложения, география, ключевой визуал и&nbsp;основной призыв.</p></article>
           <article class="block"><h3>О&nbsp;Kitten Yoga</h3><p>Концепция занятий и&nbsp;отличие проекта от&nbsp;обычной йога-студии.</p></article>
@@ -597,6 +635,41 @@
           <article class="block"><h3>FAQ</h3><p>Возраст, одежда, аллергии, язык занятия, отмена и&nbsp;перенос.</p></article>
           <article class="block"><h3>Контакты</h3><p>Соцсети, обратная связь, адрес и&nbsp;юридическая информация.</p></article>
           <article class="block"><h3>Подвал сайта</h3><p>Навигация, документы, политика конфиденциальности и&nbsp;копирайт.</p></article>
+          <div class="page-divider"><span>Страница 02</span><strong>Питомник</strong></div>
+          <article class="block"><h3>О&nbsp;котятах и&nbsp;содержании</h3><p>Порода, принципы разведения, уход, социализация, здоровье и&nbsp;условия содержания.</p></article>
+          <article class="block"><h3>Карточки котят</h3><p>Фото, имя, пол, возраст, характер, родители и&nbsp;актуальный статус каждого котёнка.</p></article>
+          <article class="block"><h3>Бронь с&nbsp;предоплатой</h3><p>Выбор котёнка, данные покупателя, предоплата и&nbsp;подтверждение бронирования.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="nursery" id="nursery">
+      <div class="wrap">
+        <div class="nursery-head">
+          <div>
+            <p class="eyebrow">Отдельная страница · Питомник</p>
+            <h2>От&nbsp;знакомства с&nbsp;котёнком до&nbsp;подтверждённой брони</h2>
+          </div>
+          <p class="lead">Страница отвечает на&nbsp;вопросы о&nbsp;разведении и&nbsp;содержании, показывает доступных котят и&nbsp;сокращает долгую переписку с&nbsp;покупателями.</p>
+        </div>
+        <div class="nursery-grid">
+          <article class="nursery-card"><b>01 · Доверие</b><h3>Котята и&nbsp;их&nbsp;содержание</h3><p>Основной информационный блок: порода, условия содержания, здоровье, социализация, документы и&nbsp;принципы ответственного разведения.</p></article>
+          <article class="nursery-card"><b>02 · Выбор</b><h3>Карточки котят</h3><p>Фотографии, данные, характер, родители и&nbsp;статус: доступен, забронирован или&nbsp;нашёл дом.</p></article>
+          <article class="nursery-card"><b>03 · Конверсия</b><h3>Бронь с&nbsp;предоплатой</h3><p>Покупатель выбирает котёнка, оставляет данные и&nbsp;вносит предоплату. Подключение использует общую платёжную интеграцию сайта и&nbsp;не&nbsp;оплачивается повторно.</p></article>
+        </div>
+        <div class="nursery-admin">
+          <h3>Админка питомника</h3>
+          <div>
+            <p>Заказчица сможет самостоятельно поддерживать страницу в&nbsp;актуальном состоянии без&nbsp;обращения к&nbsp;разработчику при каждом изменении.</p>
+            <ul class="admin-list">
+              <li>добавлять и&nbsp;скрывать карточки</li>
+              <li>менять фото и&nbsp;описания</li>
+              <li>обновлять статус котёнка</li>
+              <li>редактировать информацию о&nbsp;содержании</li>
+              <li>видеть данные по&nbsp;броням</li>
+              <li>управлять размером предоплаты</li>
+            </ul>
+          </div>
         </div>
       </div>
     </section>
@@ -624,10 +697,11 @@
             <span class="tariff-tag pill">Tilda</span>
             <h3>Дизайн + Tilda</h3>
             <p>Подходит, если приоритет — быстрее запустить один лендинг с&nbsp;готовыми интеграциями и&nbsp;минимальной технической частью.</p>
-            <div class="price">77 500 ₽ <span>базовая разработка</span></div>
+            <div class="price">95 000 ₽ <span>две страницы и&nbsp;админка</span></div>
             <ul class="features">
               <li>Индивидуальная визуальная концепция</li>
-              <li>14 блоков дизайна и&nbsp;сборки</li>
+              <li>17 блоков на&nbsp;двух страницах</li>
+              <li>Редактирование питомника средствами Tilda</li>
               <li>Готовая интеграция оплаты — +5 000 ₽</li>
               <li>Зависимость от&nbsp;тарифа и&nbsp;возможностей Tilda</li>
             </ul>
@@ -636,11 +710,11 @@
             <span class="tariff-tag pill"><span class="dot"></span>Рекомендуем</span>
             <h3>Дизайн + Next.js</h3>
             <p>Подходит для&nbsp;долгосрочного продвижения в&nbsp;Европе, высокой скорости, гибкого SEO и&nbsp;развития проекта без&nbsp;потолка конструктора.</p>
-            <div class="price">108 500 ₽ <span>базовая разработка</span></div>
+            <div class="price">134 000 ₽ <span>две страницы и&nbsp;админка</span></div>
             <ul class="features">
               <li>Индивидуальная визуальная концепция</li>
-              <li>14 блоков и&nbsp;собственная кодовая база</li>
-              <li>CMS для&nbsp;самостоятельных обновлений</li>
+              <li>17 блоков на&nbsp;двух страницах</li>
+              <li>CMS и&nbsp;админка карточек котят</li>
               <li>Полноценная интеграция оплаты — +12 000 ₽</li>
               <li>Готовность к&nbsp;бронированию и&nbsp;новым направлениям</li>
             </ul>
@@ -657,7 +731,7 @@
           <div>
             <p class="eyebrow">Инвестиция в&nbsp;экосистему Cateva</p>
             <h3>Первый сайт создаёт основу сразу для&nbsp;нескольких проектов</h3>
-            <p>Визуальные принципы, повторно используемые компоненты, CMS и&nbsp;техническая архитектура создаются один раз. Питомник, товары для&nbsp;кошек и&nbsp;хозяев, керамика и&nbsp;следующие направления смогут использовать готовый фундамент. Поэтому стоимость следующих продуктов будет существенно ниже стоимости первого сайта, а&nbsp;запуск — значительно быстрее.</p>
+            <p>Страницы Kitten Yoga и&nbsp;питомника формируют общую дизайн-систему, библиотеку компонентов, CMS и&nbsp;техническую архитектуру. Магазин товаров, керамика и&nbsp;следующие направления смогут использовать этот готовый фундамент. Поэтому стоимость следующих продуктов будет существенно ниже стоимости первого этапа, а&nbsp;запуск — значительно быстрее.</p>
           </div>
         </div>
       </div>
@@ -687,16 +761,20 @@
               <tr><td>FAQ</td><td>2</td><td>5 000</td><td>2</td><td>5 500</td></tr>
               <tr><td>Контакты</td><td>2</td><td>5 000</td><td>2</td><td>5 500</td></tr>
               <tr><td>Подвал сайта</td><td>2</td><td>5 000</td><td>2</td><td>5 500</td></tr>
+              <tr><td>Питомник: информация о&nbsp;котятах и&nbsp;содержании</td><td>1</td><td>2 500</td><td>1</td><td>2 500</td></tr>
+              <tr><td>Питомник: карточки котят</td><td>2</td><td>5 000</td><td>2</td><td>5 500</td></tr>
+              <tr><td>Питомник: бронь с&nbsp;предоплатой — сложный блок</td><td>3</td><td>7 500</td><td>3</td><td>8 500</td></tr>
+              <tr><td>Админка питомника / расширение CMS</td><td>1</td><td>2 500</td><td>3</td><td>9 000</td></tr>
               <tr><td>CMS для&nbsp;обновления данных</td><td>—</td><td>в&nbsp;платформе</td><td>3</td><td>9 000</td></tr>
               <tr><td>Публикация и&nbsp;настройка</td><td>—</td><td>включено</td><td>2</td><td>6 000</td></tr>
               <tr><td>Тестирование</td><td>—</td><td>в&nbsp;подарок</td><td>—</td><td>в&nbsp;подарок</td></tr>
-              <tr class="total-row"><td>Базовая стоимость</td><td>31</td><td>77 500</td><td>39</td><td>108 500</td></tr>
+              <tr class="total-row"><td>Базовая стоимость: две страницы и&nbsp;админка</td><td>38</td><td>95 000</td><td>48</td><td>134 000</td></tr>
               <tr><td>Подключение оплаты</td><td>2</td><td>5 000</td><td>4</td><td>12 000</td></tr>
-              <tr class="total-row"><td>Итого с&nbsp;системой оплаты</td><td>33</td><td>82 500</td><td>43</td><td>120 500</td></tr>
+              <tr class="total-row"><td>Итого с&nbsp;единой системой оплаты</td><td>40</td><td>100 000</td><td>52</td><td>146 000</td></tr>
             </tbody>
           </table>
         </div>
-        <p class="estimate-note">Ставки: дизайн и&nbsp;работы на&nbsp;Tilda — 2 500 ₽/ч; разработка Next.js — 3 000 ₽/ч. В&nbsp;стоимости блоков Next.js учтены 1 час дизайна и&nbsp;1–2 часа разработки.</p>
+        <p class="estimate-note">Ставки: дизайн и&nbsp;работы на&nbsp;Tilda — 2 500 ₽/ч; разработка Next.js — 3 000 ₽/ч. Бронь котёнка использует общую платёжную интеграцию: подключение провайдера считается один раз и&nbsp;обслуживает обе страницы.</p>
       </div>
     </section>
 
@@ -730,8 +808,8 @@
             <div class="calc-group">
               <span class="calc-label">Платформа</span>
               <div class="platforms">
-                <label class="choice"><input type="radio" name="platform" value="tilda"><span><b>Tilda</b><small>77 500 ₽</small></span></label>
-                <label class="choice"><input type="radio" name="platform" value="next" checked=""><span><b>Next.js</b><small>108 500 ₽</small></span></label>
+                <label class="choice"><input type="radio" name="platform" value="tilda"><span><b>Tilda</b><small>95 000 ₽</small></span></label>
+                <label class="choice"><input type="radio" name="platform" value="next" checked=""><span><b>Next.js</b><small>134 000 ₽</small></span></label>
               </div>
             </div>
             <div class="calc-group">
@@ -747,9 +825,9 @@
           <aside class="calc-result" aria-live="polite">
             <div>
               <p class="eyebrow">Итог проекта</p>
-              <div class="sum" id="total">120&nbsp;500 ₽<small id="duration">ориентир: 3–4 недели</small></div>
+              <div class="sum" id="total">146&nbsp;000 ₽<small id="duration">ориентир: 4–5 недель</small></div>
             </div>
-            <ul class="calc-lines" id="calc-lines"><li><span>Дизайн + Next.js</span><b>108&nbsp;500 ₽</b></li><li><span>Система оплаты</span><b>12&nbsp;000 ₽</b></li></ul>
+            <ul class="calc-lines" id="calc-lines"><li><span>Дизайн + Next.js</span><b>134&nbsp;000 ₽</b></li><li><span>Система оплаты</span><b>12&nbsp;000 ₽</b></li></ul>
           </aside>
         </div>
       </div>
@@ -775,12 +853,12 @@
         <div class="steps">
           <article class="step"><b>01</b><h3>Материалы</h3><p>Получаем брендбук, фото, видео, отзывы и&nbsp;доступ к&nbsp;старому сайту.</p></article>
           <article class="step"><b>02</b><h3>Концепция</h3><p>Создаём одно цельное визуальное направление и&nbsp;согласуем ключевой экран.</p></article>
-          <article class="step"><b>03</b><h3>Дизайн и&nbsp;сборка</h3><p>Последовательно проектируем и&nbsp;реализуем 14 блоков.</p></article>
+          <article class="step"><b>03</b><h3>Дизайн и&nbsp;сборка</h3><p>Последовательно проектируем и&nbsp;реализуем 17 блоков на&nbsp;двух страницах.</p></article>
           <article class="step"><b>04</b><h3>Проверка и&nbsp;запуск</h3><p>Тестируем сценарии, подключаем сервисы и&nbsp;публикуем сайт.</p></article>
         </div>
         <div class="terms">
-          <div class="term"><b>2–3 недели</b>Ориентировочный срок для&nbsp;тарифа Tilda.</div>
-          <div class="term"><b>3–4 недели</b>Ориентировочный срок для&nbsp;Next.js.</div>
+          <div class="term"><b>3–4 недели</b>Ориентировочный срок для&nbsp;двух страниц на&nbsp;Tilda.</div>
+          <div class="term"><b>4–5 недель</b>Ориентировочный срок для&nbsp;двух страниц и&nbsp;админки на&nbsp;Next.js.</div>
           <div class="term"><b>40 / 30 / 30</b>Оплата: старт, утверждение дизайна, запуск проекта.</div>
         </div>
       </div>
@@ -831,7 +909,7 @@
         </article>
         <article class="roadmap">
           <div class="roadmap-head"><h3>Как&nbsp;Next.js усиливает всю экосистему</h3><p>Платформа открывает не&nbsp;абстрактные технические возможности, а&nbsp;понятную последовательность продуктов. Каждый следующий этап использует уже созданный фундамент.</p></div>
-          <div class="roadmap-list"><div class="roadmap-item">Сайт и&nbsp;оплата занятий</div><div class="roadmap-item">Расписание, лист ожидания и&nbsp;сертификаты</div><div class="roadmap-item">Личный кабинет гостя</div><div class="roadmap-item">Питомник и&nbsp;профили котят</div><div class="roadmap-item">Бронирование котёнка с&nbsp;предоплатой</div><div class="roadmap-item">Магазин керамики и&nbsp;товаров</div><div class="roadmap-item">Единая программа лояльности Cateva</div></div>
+          <div class="roadmap-list"><div class="roadmap-item">Kitten Yoga и&nbsp;оплата занятий</div><div class="roadmap-item">Питомник, карточки и&nbsp;админка</div><div class="roadmap-item">Бронь котёнка с&nbsp;предоплатой</div><div class="roadmap-item">Расписание, лист ожидания и&nbsp;сертификаты</div><div class="roadmap-item">Личный кабинет гостя</div><div class="roadmap-item">Магазин керамики и&nbsp;товаров</div><div class="roadmap-item">Единая программа лояльности Cateva</div></div>
         </article>
       </div>
     </section>
@@ -849,8 +927,8 @@
   <script>
     (() => {
       const configs = {
-        tilda: { name: "Дизайн + Tilda", base: 77500, payment: 5000, seo: 5000, duration: "ориентир: 2–3 недели" },
-        next: { name: "Дизайн + Next.js", base: 108500, payment: 12000, seo: 6000, duration: "ориентир: 3–4 недели" }
+        tilda: { name: "Дизайн + Tilda", base: 95000, payment: 5000, seo: 5000, duration: "ориентир: 3–4 недели" },
+        next: { name: "Дизайн + Next.js", base: 134000, payment: 12000, seo: 6000, duration: "ориентир: 4–5 недель" }
       };
       const money = value => new Intl.NumberFormat("ru-RU").format(value) + " ₽";
       const platformInputs = [...document.querySelectorAll('input[name="platform"]')];
@@ -883,4 +961,5 @@
       render();
     })();
   </script>
+
 </body></html>
